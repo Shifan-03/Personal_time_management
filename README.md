@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stitch StudyTrack - Desktop Workspace</title>
+    <title>Stitch StudyTrack Management Dashboard</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -40,13 +40,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            overflow: hidden; /* Desktop application style - custom scrolling inside views */
+            overflow: hidden; /* Prevent native scrollbars for a true desktop application feel */
         }
-        /* Custom Premium Scrollbar */
+        /* Custom Premium Scrollbar for overflow views */
         ::-webkit-scrollbar {
             width: 8px;
             height: 8px;
@@ -72,7 +71,7 @@
         }
     </style>
 </head>
-<body class="bg-slate-50 dark:bg-darkBg text-slate-800 dark:text-slate-100 h-screen flex flex-row transition-colors duration-300">
+<body class="bg-slate-50 dark:bg-darkBg text-slate-800 dark:text-slate-100 h-screen w-screen flex flex-row transition-colors duration-300 overflow-hidden">
 
     <!-- Notification Toast -->
     <div id="toast-container" class="fixed top-6 right-6 z-50 pointer-events-none space-y-3"></div>
