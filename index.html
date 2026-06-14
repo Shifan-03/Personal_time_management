@@ -43,7 +43,7 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            overflow: hidden; /* Prevent native scrollbars for a true desktop application feel */
+            overflow: hidden; /* Prevent native scrollbars for application feel */
         }
         /* Custom Premium Scrollbar for overflow views */
         ::-webkit-scrollbar {
@@ -503,10 +503,17 @@
                                 <button onclick="resetTimer()" class="px-6 py-3 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5"><i class="fa-solid fa-rotate-left"></i> Reset</button>
                             </div>
 
-                            <div class="flex justify-center gap-2">
+                            <div class="flex justify-center gap-2 flex-wrap">
                                 <button onclick="setTimerDuration(25)" class="px-3.5 py-1.5 bg-indigo-500/10 hover:bg-indigo-500/20 text-indigo-300 text-[10px] font-bold rounded-lg transition-all">25m Pomodoro</button>
                                 <button onclick="setTimerDuration(5)" class="px-3.5 py-1.5 bg-indigo-500/10 hover:bg-indigo-500/20 text-indigo-300 text-[10px] font-bold rounded-lg transition-all">5m Short Break</button>
                                 <button onclick="setTimerDuration(15)" class="px-3.5 py-1.5 bg-indigo-500/10 hover:bg-indigo-500/20 text-indigo-300 text-[10px] font-bold rounded-lg transition-all">15m Long Break</button>
+                            </div>
+
+                            <!-- ADVANCED "TIME I COULD BE SET" SECTOR -->
+                            <div class="flex justify-center items-center gap-3 pt-4 border-t border-indigo-500/15">
+                                <span class="text-xs text-indigo-300 font-bold">Custom Timer Set:</span>
+                                <input type="number" id="custom-timer-input" min="1" max="180" value="25" class="w-16 px-2.5 py-1.5 bg-slate-800 border border-indigo-500/30 text-white rounded-lg text-xs font-bold focus:outline-none focus:border-indigo-500 text-center">
+                                <button onclick="setCustomTimerDuration()" class="px-4 py-1.5 bg-indigo-500 hover:bg-indigo-600 text-white rounded-lg text-xs font-bold transition-all shadow-md shadow-indigo-500/20">Apply</button>
                             </div>
                         </div>
                     </div>
@@ -703,6 +710,106 @@
     </div>
 
 
+    <!-- FIREBASE AND INTEGRATED PERSISTENCE MODULES -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Fallback Local Persistence Loader
+        function loadLocalState() {
+            const saved = localStorage.getItem('stitch_studytrack_state');
+            if (saved) {
+                try {
+                    const parsed = JSON.parse(saved);
+                    Object.assign(APP_STATE, parsed);
+                } catch(e) {
+                    console.log("Local state fallback parsing warning.");
+                }
+            }
+            window.saveStateToCloud = () => {
+                localStorage.setItem('stitch_studytrack_state', JSON.stringify(APP_STATE));
+            };
+        }
+
+        // Main Connection Synchronizer
+        async function initSyncEngine() {
+            // Check if Firebase dynamic config is provided by parent environment wrapper
+            if (typeof __firebase_config === 'undefined' || !__firebase_config) {
+                console.log("Widescreen Live: Firebase config undefined. Activating fallback local storage pipeline.");
+                loadLocalState();
+                syncRenderAndInit();
+                return;
+            }
+
+            try {
+                const firebaseConfig = JSON.parse(__firebase_config);
+                const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+                
+                const app = initializeApp(firebaseConfig);
+                const auth = getAuth(app);
+                const db = getFirestore(app);
+
+                let credential;
+                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                    credential = await signInWithCustomToken(auth, __initial_auth_token);
+                } else {
+                    credential = await signInAnonymously(auth);
+                }
+
+                const user = credential.user;
+                if (user) {
+                    const userId = user.uid;
+                    // Private single-state document following RULE 1
+                    const stateDocRef = doc(db, 'artifacts', appId, 'users', userId, 'userData', 'dashboardState');
+                    const snapshot = await getDoc(stateDocRef);
+
+                    if (snapshot.exists()) {
+                        const cloudData = snapshot.data();
+                        Object.assign(APP_STATE, cloudData);
+                        showNotification("Sync Successful: Data loaded securely from Cloud Firestore.", "success");
+                    } else {
+                        await setDoc(stateDocRef, APP_STATE);
+                    }
+
+                    // Expose Global Cloud Saver called on all triggers
+                    window.saveStateToCloud = async () => {
+                        try {
+                            if (auth.currentUser) {
+                                const ref = doc(db, 'artifacts', appId, 'users', auth.currentUser.uid, 'userData', 'dashboardState');
+                                await setDoc(ref, APP_STATE);
+                            }
+                        } catch (err) {
+                            console.error("Firestore Save Error: ", err);
+                        }
+                    };
+                }
+            } catch (err) {
+                console.warn("Sync Pipeline Initialization Interrupted, applying local storage fallback: ", err);
+                loadLocalState();
+            }
+
+            syncRenderAndInit();
+        }
+
+        function syncRenderAndInit() {
+            renderDashboardMetrics();
+            if (APP_STATE.currentView === 'physics-overview') {
+                renderActiveSubjectDetails();
+            } else if (APP_STATE.currentView === 'calendar') {
+                renderCalendar();
+            } else if (APP_STATE.currentView === 'analytics') {
+                renderAnalyticsView();
+            }
+            initCharts();
+        }
+
+        // Initialize synchronization on run
+        window.addEventListener('load', () => {
+            initSyncEngine();
+        });
+    </script>
+
     <!-- MASTER SCRIPT LOGIC -->
     <script>
         const APP_STATE = {
@@ -794,6 +901,13 @@
         let activeSynthType = null; 
         let synthVolumeLevel = 0.3; 
 
+        // Trigger persistent updates dynamically to save progress
+        function triggerPersistentSave() {
+            if (window.saveStateToCloud) {
+                window.saveStateToCloud();
+            }
+        }
+
         function showNotification(message, type = 'info') {
             const container = document.getElementById('toast-container');
             if (!container) return;
@@ -832,6 +946,7 @@
                 document.getElementById('theme-icon').className = 'fa-solid fa-sun text-base';
             }
             initCharts();
+            triggerPersistentSave();
         }
 
         function switchView(viewName) {
@@ -874,36 +989,18 @@
             } else if (viewName === 'physics-overview') {
                 renderActiveSubjectDetails();
             }
+            triggerPersistentSave();
         }
 
-        // DESKTOP SYSTEM KEYBOARD SHORTCUTS (Alt + KEY)
+        // DESKTOP HOTKEYS KEYBOARD LISTENER
         window.addEventListener('keydown', function(e) {
             if (e.altKey) {
                 const key = e.key.toLowerCase();
-                if (key === 'd') {
+                const hotkeys = { 'd': 'dashboard', 't': 'physics-overview', 'c': 'calendar', 'f': 'focus', 'a': 'analytics', 's': 'settings' };
+                if (hotkeys[key]) {
                     e.preventDefault();
-                    switchView('dashboard');
-                    showNotification('Navigated to Dashboard (Alt+D)');
-                } else if (key === 't') {
-                    e.preventDefault();
-                    switchView('physics-overview');
-                    showNotification('Navigated to Syllabus Tracker (Alt+T)');
-                } else if (key === 'c') {
-                    e.preventDefault();
-                    switchView('calendar');
-                    showNotification('Navigated to Calendar (Alt+C)');
-                } else if (key === 'f') {
-                    e.preventDefault();
-                    switchView('focus');
-                    showNotification('Navigated to Focus Timer (Alt+F)');
-                } else if (key === 'a') {
-                    e.preventDefault();
-                    switchView('analytics');
-                    showNotification('Navigated to Analytics (Alt+A)');
-                } else if (key === 's') {
-                    e.preventDefault();
-                    switchView('settings');
-                    showNotification('Navigated to Settings (Alt+S)');
+                    switchView(hotkeys[key]);
+                    showNotification(`Hotkey trigger: Jumped to ${hotkeys[key]}`);
                 }
             }
         });
@@ -963,7 +1060,7 @@
                             <div class="h-2.5 w-2.5 rounded-full" style="background-color: ${accentColor}"></div>
                             <div>
                                 <h4 class="font-bold text-xs dark:text-white">${ex.title}</h4>
-                                <span class="text-[10px] text-slate-400 font-semibold">${subName} &mdash; Grade Target: ${ex.grade}</span>
+                                <span class="text-[10px] text-slate-400 font-semibold">${subName} &mdash; Target: ${ex.grade}</span>
                             </div>
                         </div>
                         <div class="text-right">
@@ -1046,11 +1143,7 @@
 
             renderDashboardMetrics();
             showNotification(`Removed Subject Track "${subject.name}"`);
-        }
-
-        function viewSubjectTracker(subjectId) {
-            APP_STATE.activeSubjectId = subjectId;
-            switchView('physics-overview');
+            triggerPersistentSave();
         }
 
         function renderActiveSubjectDetails() {
@@ -1135,6 +1228,7 @@
             input.value = '';
             renderPhysicsNotes();
             showNotification('Saved study tracker note successfully.');
+            triggerPersistentSave();
         }
 
         function renderPhysicsChapters() {
@@ -1193,6 +1287,7 @@
                 activeSub.chapters[idx].completed = !activeSub.chapters[idx].completed;
                 renderPhysicsChapters();
                 showNotification('Syllabus metrics updated dynamically.');
+                triggerPersistentSave();
             }
         }
 
@@ -1221,6 +1316,7 @@
             subtasksInput.value = '5';
             renderPhysicsChapters();
             showNotification('New syllabus chapter added!');
+            triggerPersistentSave();
         }
 
         function deleteChapterFromActiveSubject(idx) {
@@ -1230,6 +1326,7 @@
                 activeSub.chapters.splice(idx, 1);
                 renderPhysicsChapters();
                 showNotification(`Removed syllabus chapter "${deleted.title}"`);
+                triggerPersistentSave();
             }
         }
 
@@ -1252,7 +1349,6 @@
             document.getElementById('physics-target-hours-lbl').innerText = `${activeSub.targetHours}.0 hours goal`;
             document.getElementById('subject-target-hours-desc').innerText = `Targeting ${activeSub.targetHours} hours total study flow`;
         }
-
 
         function navigateCalendar(dir) {
             calendarCurrentMonth += dir;
@@ -1353,6 +1449,7 @@
             APP_STATE.exams = APP_STATE.exams.filter(ex => ex.id !== examId);
             renderCalendar();
             showNotification(`Deleted milestone "${toDelete.title}"`);
+            triggerPersistentSave();
         }
 
         function renderExamsDropdowns() {
@@ -1396,8 +1493,8 @@
 
             renderCalendar();
             showNotification('New exam milestone mapped successfully!', 'success');
+            triggerPersistentSave();
         }
-
 
         function renderTimerSubjects() {
             const select = document.getElementById('timer-subject-select');
@@ -1417,6 +1514,19 @@
             document.getElementById('timer-start-btn').innerHTML = `<i class="fa-solid fa-play"></i> Start`;
             document.getElementById('timer-status-desc').innerText = `Configured for ${mins} minute focus session`;
             updateTimerDisplay();
+        }
+
+        // TIME CONFIGURATION SETTER FUNCTION
+        function setCustomTimerDuration() {
+            const customInput = document.getElementById('custom-timer-input');
+            if (!customInput) return;
+            const value = parseInt(customInput.value);
+            if (isNaN(value) || value < 1 || value > 180) {
+                showNotification("Please set a focus duration between 1 and 180 minutes.", "error");
+                return;
+            }
+            setTimerDuration(value);
+            showNotification(`Timer updated successfully to ${value} minutes.`, "success");
         }
 
         function updateTimerDisplay() {
@@ -1475,6 +1585,7 @@
                 if (sub) {
                     sub.completedHours = parseFloat((sub.completedHours + 0.5).toFixed(1));
                     renderDashboardMetrics();
+                    triggerPersistentSave();
                 }
             }
         }
@@ -1592,7 +1703,6 @@
                 synthGain.gain.setValueAtTime(synthVolumeLevel, audioCtx.currentTime);
             }
         }
-
 
         function renderAnalyticsView() {
             const list = document.getElementById('analytics-mastery-list');
@@ -1723,7 +1833,6 @@
             }
         }
 
-
         function openAddSubjectModal() {
             document.getElementById('add-subject-modal').classList.remove('hidden');
             selectModalColor('#6366f1', 'indigo'); 
@@ -1776,22 +1885,17 @@
             closeAddSubjectModal();
             renderDashboardMetrics();
             showNotification(`Subject track "${name}" created successfully!`, 'success');
+            triggerPersistentSave();
         }
-
 
         function saveWorkspaceSettings() {
             const nameVal = document.getElementById('settings-name-input').value.trim();
             if (nameVal) {
                 document.getElementById('header-user-name').innerText = nameVal;
                 showNotification('Scholar name settings updated successfully.', 'success');
+                triggerPersistentSave();
             }
         }
-
-
-        window.onload = function() {
-            renderDashboardMetrics();
-            switchView('dashboard');
-        };
     </script>
 </body>
 </html>
