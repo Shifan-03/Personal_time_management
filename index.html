@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stitch StudyTrack Management Dashboard</title>
+    <title>Stitch StudyTrack Premium Dashboard</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -12,9 +12,9 @@
             theme: {
                 extend: {
                     colors: {
-                        darkBg: '#0b0f19',
-                        darkSurface: '#111827',
-                        darkBorder: '#1f2937',
+                        darkBg: '#080c14',
+                        darkSurface: '#0f172a',
+                        darkBorder: '#1e293b',
                         brand: {
                             50: '#f5f3ff',
                             100: '#ede9fe',
@@ -28,7 +28,7 @@
                     },
                     boxShadow: {
                         'premium': '0 4px 20px -2px rgba(148, 163, 184, 0.08), 0 2px 8px -1px rgba(148, 163, 184, 0.04)',
-                        'premium-dark': '0 12px 40px -12px rgba(0, 0, 0, 0.7), 0 1px 3px 0 rgba(255, 255, 255, 0.03)',
+                        'premium-dark': '0 12px 40px -12px rgba(0, 0, 0, 0.8), 0 1px 4px 0 rgba(255, 255, 255, 0.02)',
                     }
                 }
             }
@@ -43,62 +43,57 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            overflow: hidden; /* Prevent native scrollbars for premium application feel */
+            overflow: hidden; /* Scrollbars premium look and feel anar jonno safe wrapper overflow toggle */
         }
-        /* Custom Scrollbars */
+        /* Custom Premium Scrollbars */
         ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
+            width: 6px;
+            height: 6px;
         }
         ::-webkit-scrollbar-track {
             background: transparent;
         }
         .dark ::-webkit-scrollbar-thumb {
-            background: #1f2937;
+            background: #1e293b;
             border-radius: 99px;
-            border: 2px solid #111827;
         }
         .dark ::-webkit-scrollbar-thumb:hover {
-            background: #374151;
+            background: #334155;
         }
         ::-webkit-scrollbar-thumb {
             background: #cbd5e1;
             border-radius: 99px;
-            border: 2px solid #ffffff;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8;
         }
     </style>
 </head>
 <body class="bg-slate-50 dark:bg-darkBg text-slate-800 dark:text-slate-100 h-screen w-screen flex flex-row transition-colors duration-300 overflow-hidden">
 
-    <!-- Toast Notification Overlay -->
+    <!-- Custom System Toast Notifications Overlay -->
     <div id="toast-container" class="fixed top-6 right-6 z-50 pointer-events-none space-y-3"></div>
 
-    <!-- LEFT SIDEBAR -->
+    <!-- SIDEBAR SECTION: Navigation and shortcuts in Banglish/English style -->
     <aside class="w-72 border-r border-slate-200 dark:border-darkBorder bg-white dark:bg-darkSurface flex flex-col justify-between flex-shrink-0 h-full select-none">
         
-        <!-- Brand Logo Header -->
+        <!-- App Header Logo -->
         <div class="p-6 border-b border-slate-100 dark:border-darkBorder">
             <div class="flex items-center gap-3">
                 <div class="h-10 w-10 bg-gradient-to-tr from-brand-500 to-indigo-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-brand-500/20">
-                    <i class="fa-solid fa-graduation-cap text-lg"></i>
+                    <i class="fa-solid fa-hourglass-start text-lg"></i>
                 </div>
                 <div>
                     <span class="font-extrabold text-lg tracking-tight block">STITCH</span>
-                    <span class="text-[10px] uppercase font-bold text-slate-400 dark:text-slate-500 tracking-wider -mt-1 block">StudyTrack Suite Desktop</span>
+                    <span class="text-[10px] uppercase font-bold text-slate-400 dark:text-slate-500 tracking-wider -mt-1 block">Live Study Tracker</span>
                 </div>
             </div>
         </div>
 
-        <!-- Sidebar Navigation Menu Links -->
+        <!-- Sidebar Items navigation -->
         <nav id="sidebar-nav" class="flex-grow flex flex-col gap-1.5 p-4 overflow-y-auto">
-            <span class="px-3 text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-2 block">Core Hub</span>
+            <span class="px-3 text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-2 block">Main Menu</span>
             
             <a href="#" onclick="switchView('dashboard')" data-nav="dashboard" class="nav-item flex items-center gap-3 px-3 py-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/40 hover:text-brand-600 dark:hover:text-white transition-all font-semibold text-sm">
                 <i class="fa-solid fa-chart-pie w-5 text-center text-lg"></i>
-                <span>Dashboard</span>
+                <span>Dashboard Overview</span>
                 <span class="ml-auto text-[9px] text-slate-400 dark:text-slate-500 border border-slate-200 dark:border-slate-700 px-1.5 py-0.5 rounded uppercase font-bold tracking-wider">Alt+D</span>
             </a>
             
@@ -116,8 +111,8 @@
             </a>
 
             <a href="#" onclick="switchView('focus')" data-nav="focus" class="nav-item flex items-center gap-3 px-3 py-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/40 hover:text-brand-600 dark:hover:text-white transition-all font-semibold text-sm">
-                <i class="fa-solid fa-stopwatch w-5 text-center text-lg"></i>
-                <span>Focus Timer</span>
+                <i class="fa-solid fa-stopwatch w-5 text-center text-lg animate-pulse text-emerald-500"></i>
+                <span>Live Stopwatch</span>
                 <span class="ml-auto text-[9px] text-slate-400 dark:text-slate-500 border border-slate-200 dark:border-slate-700 px-1.5 py-0.5 rounded uppercase font-bold tracking-wider">Alt+F</span>
             </a>
 
@@ -128,92 +123,98 @@
             </a>
 
             <div class="h-[1px] bg-slate-100 dark:bg-darkBorder my-4"></div>
-            <span class="px-3 text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-2 block">Configure</span>
+            <span class="px-3 text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-2 block">Settings</span>
 
             <a href="#" onclick="switchView('settings')" data-nav="settings" class="nav-item flex items-center gap-3 px-3 py-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/40 hover:text-brand-600 dark:hover:text-white transition-all font-semibold text-sm">
                 <i class="fa-solid fa-sliders w-5 text-center text-lg"></i>
-                <span>Settings</span>
+                <span>Preferences</span>
                 <span class="ml-auto text-[9px] text-slate-400 dark:text-slate-500 border border-slate-200 dark:border-darkBorder px-1.5 py-0.5 rounded uppercase font-bold tracking-wider">Alt+S</span>
             </a>
         </nav>
 
-        <!-- Desktop Shortcuts Indicator -->
-        <div class="p-4 m-4 bg-slate-50 dark:bg-slate-800/30 rounded-xl border border-slate-100 dark:border-darkBorder text-xs text-slate-400">
-            <span class="font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest text-[9px] block mb-1">Desktop Hotkeys</span>
+        <!-- Hotkey settings UI list -->
+        <div class="p-4 m-4 bg-slate-50 dark:bg-slate-800/20 rounded-xl border border-slate-100 dark:border-darkBorder text-xs text-slate-400">
+            <span class="font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest text-[9px] block mb-1">Shortcut Keys</span>
             <div class="grid grid-cols-2 gap-y-1 text-[10px]">
                 <span><kbd class="bg-slate-200 dark:bg-slate-800 px-1 rounded font-mono">Alt+D</kbd> Dash</span>
                 <span><kbd class="bg-slate-200 dark:bg-slate-800 px-1 rounded font-mono">Alt+T</kbd> Tracker</span>
                 <span><kbd class="bg-slate-200 dark:bg-slate-800 px-1 rounded font-mono">Alt+C</kbd> Calend</span>
-                <span><kbd class="bg-slate-200 dark:bg-slate-800 px-1 rounded font-mono">Alt+F</kbd> Focus</span>
+                <span><kbd class="bg-slate-200 dark:bg-slate-800 px-1 rounded font-mono">Alt+F</kbd> Stopwatch</span>
             </div>
         </div>
     </aside>
 
-    <!-- RIGHT MAIN WRAPPER -->
+    <!-- RIGHT WORKSPACE PORT -->
     <div class="flex-grow flex flex-col h-full overflow-hidden">
         
-        <!-- HEADER TOP BAR -->
+        <!-- HEADER COMPONENT -->
         <header class="border-b border-slate-200 dark:border-darkBorder bg-white dark:bg-darkSurface px-8 py-4 flex items-center justify-between select-none">
             <div>
                 <h1 class="text-xl font-extrabold tracking-tight dark:text-white" id="header-title">Workspace Hub Overview</h1>
-                <p class="text-xs text-slate-400 mt-0.5">Desktop Console &mdash; Active Study Synthesis Session</p>
+                <p class="text-xs text-slate-400 mt-0.5">Desktop Premium Dashboard &mdash; Realtime Interactive Session</p>
+            </div>
+
+            <!-- Active stopwatch warning bar, if tracking live -->
+            <div id="header-stopwatch-indicator" class="hidden items-center gap-2 bg-emerald-500/10 border border-emerald-500/30 text-emerald-500 px-3.5 py-1.5 rounded-full text-xs font-semibold animate-pulse">
+                <span class="h-2 w-2 rounded-full bg-emerald-500"></span>
+                <span>Live Study Active: <strong id="header-stopwatch-time">00:00:00</strong></span>
             </div>
 
             <div class="flex items-center gap-4">
-                <!-- Theme Toggle Button -->
+                <!-- Toggle Theme trigger -->
                 <button onclick="toggleTheme()" class="h-9 w-9 bg-slate-50 dark:bg-slate-800/80 hover:bg-slate-100 dark:hover:bg-slate-700/60 border border-slate-200 dark:border-darkBorder rounded-xl flex items-center justify-center transition-all text-slate-600 dark:text-slate-300" title="Toggle Theme">
                     <i id="theme-icon" class="fa-solid fa-sun text-base"></i>
                 </button>
                 <div class="h-8 w-[1px] bg-slate-200 dark:bg-darkBorder"></div>
-                <!-- Profile badge -->
+                <!-- Premium user status badge -->
                 <div class="flex items-center gap-3">
                     <div class="h-9 w-9 rounded-full bg-indigo-500/10 text-indigo-500 flex items-center justify-center font-bold text-xs border border-indigo-500/30">
                         SS
                     </div>
                     <div>
                         <span class="text-xs font-bold block leading-none" id="header-user-name">Scholar Mode</span>
-                        <span class="text-[9px] text-slate-400 block mt-1">Stitch Scholar Premium</span>
+                        <span class="text-[9px] text-slate-400 block mt-1">Premium Stitch Academic</span>
                     </div>
                 </div>
             </div>
         </header>
 
-        <!-- MAIN VIEW PORT -->
+        <!-- VIEWS WRAPPER -->
         <main class="flex-grow p-8 overflow-y-auto bg-slate-50/50 dark:bg-darkBg/30 h-full max-h-[calc(100vh-73px)]">
 
-            <!-- 1. HUB DASHBOARD VIEW -->
+            <!-- 1. DASHBOARD PANEL -->
             <div id="view-dashboard" class="view-panel space-y-8">
                 <div class="flex items-center justify-between border-b border-slate-200 dark:border-darkBorder pb-5">
                     <div>
                         <h2 class="text-2xl font-black dark:text-white">Workspace Overview</h2>
-                        <p class="text-sm text-slate-400">Synthesize your academic syllabus and focus metrics.</p>
+                        <p class="text-sm text-slate-400">Track and monitor your syllabus metrics with live audio stopwatch.</p>
                     </div>
                     <button onclick="openAddSubjectModal()" class="px-5 py-3 bg-brand-600 hover:bg-brand-700 text-white rounded-xl text-xs font-bold transition-all shadow-md shadow-brand-600/10 flex items-center gap-2">
                         <i class="fa-solid fa-plus text-xs"></i> Create Subject Track
                     </button>
                 </div>
 
-                <!-- Stats Dashboard Grid -->
+                <!-- Main dynamic study hour parameters -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     <div class="bg-white dark:bg-darkSurface border border-slate-200 dark:border-darkBorder p-5 rounded-2xl shadow-premium dark:shadow-premium-dark flex items-center justify-between">
                         <div>
-                            <span class="text-[10px] text-slate-400 font-extrabold uppercase tracking-wider block">Total Progress Rate</span>
+                            <span class="text-[10px] text-slate-400 font-extrabold uppercase tracking-wider block">Syllabus Progress Rate</span>
                             <h3 class="text-2xl font-black dark:text-white mt-1.5" id="stat-total-progress">62%</h3>
-                            <p class="text-[10px] text-emerald-500 font-bold mt-1.5"><i class="fa-solid fa-chart-line mr-1"></i>+4.2% this week</p>
+                            <p class="text-[10px] text-emerald-500 font-bold mt-1.5"><i class="fa-solid fa-chart-line mr-1"></i>Curriculum checked</p>
                         </div>
                         <div class="h-12 w-12 bg-indigo-500/10 text-indigo-500 rounded-xl flex items-center justify-center text-lg">
-                            <i class="fa-solid fa-spinner animate-spin"></i>
+                            <i class="fa-solid fa-chart-pie"></i>
                         </div>
                     </div>
 
                     <div class="bg-white dark:bg-darkSurface border border-slate-200 dark:border-darkBorder p-5 rounded-2xl shadow-premium dark:shadow-premium-dark flex items-center justify-between">
                         <div>
-                            <span class="text-[10px] text-slate-400 font-extrabold uppercase tracking-wider block">Study Time Logged</span>
+                            <span class="text-[10px] text-slate-400 font-extrabold uppercase tracking-wider block">Total Study Time Logged</span>
                             <h3 class="text-2xl font-black dark:text-white mt-1.5" id="stat-total-hours">135.5 hrs</h3>
-                            <p class="text-[10px] text-indigo-500 font-bold mt-1.5"><i class="fa-solid fa-stopwatch mr-1"></i>25 hrs focus goal</p>
+                            <p class="text-[10px] text-emerald-400 font-bold mt-1.5" id="stat-minutes-subtext">0 minutes accrued</p>
                         </div>
                         <div class="h-12 w-12 bg-emerald-500/10 text-emerald-500 rounded-xl flex items-center justify-center text-lg">
-                            <i class="fa-solid fa-hourglass-half"></i>
+                            <i class="fa-solid fa-stopwatch"></i>
                         </div>
                     </div>
 
@@ -221,7 +222,7 @@
                         <div>
                             <span class="text-[10px] text-slate-400 font-extrabold uppercase tracking-wider block">Milestones Active</span>
                             <h3 class="text-2xl font-black dark:text-white mt-1.5" id="stat-exams-count">3 Exams</h3>
-                            <p class="text-[10px] text-rose-500 font-bold mt-1.5" id="stat-next-exam">Next in 4 days</p>
+                            <p class="text-[10px] text-rose-500 font-bold mt-1.5" id="stat-next-exam">Next exam pending</p>
                         </div>
                         <div class="h-12 w-12 bg-rose-500/10 text-rose-500 rounded-xl flex items-center justify-center text-lg">
                             <i class="fa-solid fa-bell"></i>
@@ -232,7 +233,7 @@
                         <div>
                             <span class="text-[10px] text-slate-400 font-extrabold uppercase tracking-wider block">Mastery GPA</span>
                             <h3 class="text-2xl font-black dark:text-white mt-1.5" id="stat-gpa">3.95</h3>
-                            <p class="text-[10px] text-indigo-500 font-bold mt-1.5">Excellent performance</p>
+                            <p class="text-[10px] text-indigo-500 font-bold mt-1.5">Top performing level</p>
                         </div>
                         <div class="h-12 w-12 bg-brand-500/10 text-brand-500 rounded-xl flex items-center justify-center text-lg">
                             <i class="fa-solid fa-award"></i>
@@ -240,29 +241,31 @@
                     </div>
                 </div>
 
-                <!-- Chart Analysis & Mini Milestones Section -->
+                <!-- Professional layout holding the Realtime Distribution Doughnut/Pie and Milestone logs -->
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                     <div class="col-span-1 lg:col-span-2 bg-white dark:bg-darkSurface border border-slate-200 dark:border-darkBorder p-6 rounded-2xl shadow-premium dark:shadow-premium-dark">
                         <div class="flex items-center justify-between mb-4">
                             <div>
-                                <h3 class="font-bold text-base dark:text-white">Active Weekly Flow</h3>
-                                <p class="text-xs text-slate-400">Total duration of focus cycles completed per day</p>
+                                <h3 class="font-bold text-base dark:text-white">Subject Study Distribution (Pie Chart)</h3>
+                                <p class="text-xs text-slate-400">Total hours read per subject mapped in premium realtime distribution</p>
                             </div>
-                            <span class="text-xs font-bold text-brand-500 bg-brand-500/10 px-2.5 py-1 rounded-lg">Realtime Feed</span>
+                            <span class="text-xs font-bold text-brand-500 bg-brand-500/10 px-2.5 py-1 rounded-lg">Realtime Sync</span>
                         </div>
-                        <div class="relative h-64">
-                            <canvas id="dashWeeklyChart"></canvas>
+                        <!-- Doughnut/Pie Chart container with precise rendering aspect ratio -->
+                        <div class="relative h-64 flex items-center justify-center">
+                            <canvas id="dashSubjectPieChart"></canvas>
                         </div>
                     </div>
 
+                    <!-- Sidebar milestones overview -->
                     <div class="bg-white dark:bg-darkSurface border border-slate-200 dark:border-darkBorder p-6 rounded-2xl shadow-premium dark:shadow-premium-dark flex flex-col justify-between">
                         <div>
                             <div class="flex items-center justify-between mb-4">
-                                <h3 class="font-bold text-base dark:text-white">Upcoming Milestones</h3>
-                                <button onclick="switchView('calendar')" class="text-xs font-semibold text-brand-500 hover:underline">View Calendar</button>
+                                <h3 class="font-bold text-base dark:text-white">Upcoming Exams</h3>
+                                <button onclick="switchView('calendar')" class="text-xs font-semibold text-brand-500 hover:underline">View All</button>
                             </div>
                             <div class="space-y-3" id="dash-upcoming-exams-list">
-                                <!-- Rendered dynamically -->
+                                <!-- Populated dynamically -->
                             </div>
                         </div>
                         <div class="mt-4 pt-4 border-t border-slate-100 dark:border-darkBorder">
@@ -273,44 +276,45 @@
                     </div>
                 </div>
 
-                <!-- Subject Mastery Track Cards -->
+                <!-- Subject cards displaying status progression -->
                 <div class="space-y-4">
                     <div class="flex items-center justify-between">
                         <h3 class="font-extrabold text-lg dark:text-white">Subject Mastery</h3>
                         <button onclick="openAddSubjectModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 dark:bg-darkBorder dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 rounded-xl text-xs font-bold transition-all"><i class="fa-solid fa-plus mr-1.5"></i>Add Subject</button>
                     </div>
                     <div id="dashboard-subjects-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <!-- Dynamically filled on load -->
+                        <!-- Populated dynamically on load -->
                     </div>
                 </div>
             </div>
 
-            <!-- 2. SUBJECT DETAIL VIEW (SYLLABUS TRACKER) -->
+            <!-- 2. SYLLABUS DETAIL VIEW -->
             <div id="view-physics-overview" class="view-panel space-y-8 hidden">
                 <div class="flex items-center justify-between border-b border-slate-200 dark:border-darkBorder pb-5">
                     <div>
                         <div class="flex items-center gap-2.5 mb-1">
                             <i class="fa-solid fa-atom text-indigo-500 text-2xl" id="physics-header-icon"></i>
-                            <h2 class="text-2xl font-black dark:text-white" id="physics-header-title">AP Physics C: Classical Mechanics</h2>
+                            <h2 class="text-2xl font-black dark:text-white" id="physics-header-title">AP Physics Syllabus Path</h2>
                         </div>
-                        <p class="text-sm text-slate-400">Manage syllabus progression, chapter checkmarks, notes, formulas, and mock exams.</p>
+                        <p class="text-sm text-slate-400">Track milestones, syllabus completions, write notes, equations and start live stopwatch tracker.</p>
                     </div>
                     <div class="flex gap-2">
-                        <button onclick="switchView('focus')" class="px-5 py-2.5 bg-indigo-500 hover:bg-indigo-600 text-white text-xs font-bold rounded-xl transition-all shadow-lg shadow-indigo-500/10"><i class="fa-solid fa-hourglass-start mr-1.5"></i>Start Focus Session</button>
+                        <button onclick="switchView('focus')" class="px-5 py-2.5 bg-indigo-500 hover:bg-indigo-600 text-white text-xs font-bold rounded-xl transition-all shadow-lg shadow-indigo-500/10"><i class="fa-solid fa-stopwatch mr-1.5"></i>Open Live Stopwatch</button>
                         <button onclick="switchView('dashboard')" class="px-5 py-2.5 bg-slate-100 hover:bg-slate-200 dark:bg-darkBorder dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-bold rounded-xl transition-all"><i class="fa-solid fa-arrow-left mr-1.5"></i>Back</button>
                     </div>
                 </div>
 
+                <!-- Details Grid cards -->
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                    <!-- Progress Card -->
+                    <!-- Progress rate and total track limits -->
                     <div id="physics-progress-card-bg" class="bg-gradient-to-br from-indigo-950 to-slate-900 p-6 rounded-2xl text-white border border-indigo-500/30 flex flex-col justify-between shadow-xl">
                         <div>
                             <div class="flex items-center justify-between mb-4">
-                                <span class="text-xs bg-indigo-500/20 text-indigo-300 font-extrabold px-3 py-1 rounded-full uppercase tracking-wider" id="subject-progress-badge">Subject Progress</span>
+                                <span class="text-xs bg-indigo-500/20 text-indigo-300 font-extrabold px-3 py-1 rounded-full uppercase tracking-wider" id="subject-progress-badge">Track Progress</span>
                                 <i class="fa-solid fa-circle-nodes text-lg text-indigo-400"></i>
                             </div>
                             <h3 class="text-3xl font-extrabold" id="physics-progress-text">53% Complete</h3>
-                            <p class="text-xs text-indigo-300 mt-2" id="subject-target-hours-desc">Targeting 80 hours total study flow</p>
+                            <p class="text-xs text-indigo-300 mt-2" id="subject-target-hours-desc">Targeting hours logged study goals</p>
                         </div>
                         <div class="mt-8 space-y-4">
                             <div class="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden">
@@ -323,9 +327,9 @@
                         </div>
                     </div>
 
-                    <!-- Formulas Card -->
+                    <!-- Formulas and academic notes -->
                     <div class="bg-white dark:bg-darkSurface border border-slate-200 dark:border-darkBorder p-6 rounded-2xl shadow-premium dark:shadow-premium-dark">
-                        <h3 class="font-bold text-base dark:text-white mb-4"><i class="fa-solid fa-microscope text-indigo-500 mr-2" id="sandbox-icon-accent"></i>Formulas & Cheat Sandbox</h3>
+                        <h3 class="font-bold text-base dark:text-white mb-4"><i class="fa-solid fa-microscope text-indigo-500 mr-2" id="sandbox-icon-accent"></i>Formulas & cheat-sheet</h3>
                         <div class="space-y-3 text-xs overflow-y-auto max-h-48 pr-1">
                             <div class="p-2.5 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-darkBorder">
                                 <p class="font-bold text-indigo-500 dark:text-indigo-400" id="formula-heading-1">Orbital Velocity Derivation</p>
@@ -342,32 +346,31 @@
                         </div>
                     </div>
 
-                    <!-- Study Tracker notes -->
+                    <!-- Notes journal log tracker -->
                     <div class="bg-white dark:bg-darkSurface border border-slate-200 dark:border-darkBorder p-6 rounded-2xl shadow-premium dark:shadow-premium-dark flex flex-col justify-between">
                         <div>
-                            <h3 class="font-bold text-base dark:text-white mb-3">Study Tracker Log</h3>
+                            <h3 class="font-bold text-base dark:text-white mb-3">Study Tracker Journal</h3>
                             <div class="space-y-3 text-xs max-h-36 overflow-y-auto pr-1" id="physics-notes-list">
                                 <!-- Populated dynamically -->
                             </div>
                         </div>
                         <div class="mt-4 flex gap-2">
-                            <input id="physics-note-input" type="text" placeholder="Add study note..." class="flex-grow bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-darkBorder text-xs rounded-xl px-3 py-2.5 focus:outline-none focus:border-indigo-500 text-slate-800 dark:text-white">
+                            <input id="physics-note-input" type="text" placeholder="Note likhun eikhane..." class="flex-grow bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-darkBorder text-xs rounded-xl px-3 py-2.5 focus:outline-none focus:border-indigo-500 text-slate-800 dark:text-white">
                             <button onclick="addPhysicsNote()" class="px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-white rounded-xl text-xs font-semibold transition-all" id="physics-save-note-btn">Save</button>
                         </div>
                     </div>
                 </div>
 
-                <!-- Interactive Syllabus Checklist and Chapter addition -->
+                <!-- Chapters progress trackers -->
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                    <!-- Chapters checklist selection -->
                     <div class="lg:col-span-2 bg-white dark:bg-darkSurface border border-slate-200 dark:border-darkBorder p-6 rounded-2xl shadow-premium dark:shadow-premium-dark flex flex-col justify-between">
                         <div>
                             <div class="flex items-center justify-between mb-6">
                                 <div>
-                                    <h3 class="font-bold text-base dark:text-white">Syllabus Chapters Progression</h3>
-                                    <p class="text-xs text-slate-400">Toggle Completed checkmarks to dynamically update subject progress rates</p>
+                                    <h3 class="font-bold text-base dark:text-white">Chapters Syllabus Overview</h3>
+                                    <p class="text-xs text-slate-400">Chapters and topics complete toggle to update rates</p>
                                 </div>
-                                <span class="text-xs font-bold text-indigo-500" id="syllabus-standard-badge">AP Syllabus Standard</span>
+                                <span class="text-xs font-bold text-indigo-500" id="syllabus-standard-badge">Curriculum Plan</span>
                             </div>
                             <div class="divide-y divide-slate-100 dark:divide-darkBorder max-h-[22rem] overflow-y-auto pr-1" id="physics-chapters-list">
                                 <!-- Populated dynamically -->
@@ -375,21 +378,21 @@
                         </div>
                     </div>
 
-                    <!-- Chapter additions form -->
+                    <!-- Action panels to add chapters to active path -->
                     <div class="bg-white dark:bg-darkSurface border border-slate-200 dark:border-darkBorder p-6 rounded-2xl shadow-premium dark:shadow-premium-dark flex flex-col justify-between">
                         <div>
                             <h3 class="font-bold text-base dark:text-white mb-2">
                                 <i class="fa-solid fa-folder-plus text-indigo-500 mr-2" id="add-chapter-icon-accent"></i>Add New Chapter
                             </h3>
-                            <p class="text-xs text-slate-400 mb-4">Incorporate structured learning goals or specific exam topics under this syllabus path.</p>
+                            <p class="text-xs text-slate-400 mb-4">Append custom subject learning targets or syllabus structures directly.</p>
                             
                             <div class="space-y-4 text-xs">
                                 <div>
                                     <label class="block font-bold text-slate-400 mb-1.5">Chapter Title</label>
-                                    <input id="chapter-title-input" type="text" placeholder="e.g., Circular Motion & Dynamics" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-darkBorder rounded-xl px-4 py-2.5 focus:outline-none focus:border-indigo-500 text-slate-800 dark:text-white font-medium">
+                                    <input id="chapter-title-input" type="text" placeholder="e.g. Fluids and Thermodynamics" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-darkBorder rounded-xl px-4 py-2.5 focus:outline-none focus:border-indigo-500 text-slate-800 dark:text-white font-medium">
                                 </div>
                                 <div>
-                                    <label class="block font-bold text-slate-400 mb-1.5">Syllabus Subtasks / Steps Count</label>
+                                    <label class="block font-bold text-slate-400 mb-1.5">Subtask Checkpoints Count</label>
                                     <input id="chapter-subtasks-input" type="number" value="5" min="1" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-darkBorder rounded-xl px-4 py-2.5 focus:outline-none focus:border-indigo-500 text-slate-800 dark:text-white font-semibold">
                                 </div>
                             </div>
@@ -403,17 +406,16 @@
                 </div>
             </div>
 
-            <!-- 3. INTERACTIVE EXAM CALENDAR VIEW -->
+            <!-- 3. EXAM CALENDAR VIEW -->
             <div id="view-calendar" class="view-panel space-y-8 hidden">
                 <div class="flex items-center justify-between border-b border-slate-200 dark:border-darkBorder pb-5">
                     <div>
-                        <h2 class="text-2xl font-black dark:text-white">Exam Milestones Calendar</h2>
-                        <p class="text-sm text-slate-400">Map out test milestones and monitor your countdown margins.</p>
+                        <h2 class="text-2xl font-black dark:text-white">Academic Exam Milestones</h2>
+                        <p class="text-sm text-slate-400">Plan milestones, test dates, exam scopes, and grades in a fully dynamic view.</p>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                    <!-- Calendar View Panel -->
                     <div class="lg:col-span-2 bg-white dark:bg-darkSurface border border-slate-200 dark:border-darkBorder p-6 rounded-2xl shadow-premium dark:shadow-premium-dark">
                         <div class="flex items-center justify-between mb-6">
                             <h3 class="font-extrabold text-lg dark:text-white" id="calendar-month-year-label">June 2026</h3>
@@ -432,39 +434,39 @@
                         </div>
                     </div>
 
-                    <!-- Sidebar Scheduler -->
+                    <!-- Milestone schedulers -->
                     <div class="space-y-6">
                         <div class="bg-white dark:bg-darkSurface border border-slate-200 dark:border-darkBorder p-6 rounded-2xl shadow-premium dark:shadow-premium-dark">
-                            <h3 class="font-bold text-base dark:text-white mb-4"><i class="fa-solid fa-calendar-plus text-rose-500 mr-2"></i>Add Exam Milestone</h3>
+                            <h3 class="font-bold text-base dark:text-white mb-4"><i class="fa-solid fa-calendar-plus text-rose-500 mr-2"></i>Add Exam Schedule</h3>
                             
                             <div class="space-y-3 text-xs">
                                 <div>
-                                    <label class="block font-bold text-slate-400 mb-1">Subject Association</label>
+                                    <label class="block font-bold text-slate-400 mb-1">Subject Link</label>
                                     <select id="exam-subject-select" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-darkBorder rounded-xl px-3 py-2.5 focus:outline-none focus:border-brand-500 text-slate-800 dark:text-white font-medium">
                                         <!-- Populated dynamically -->
                                     </select>
                                 </div>
                                 <div>
-                                    <label class="block font-bold text-slate-400 mb-1">Exam Title Name</label>
-                                    <input id="exam-title-input" type="text" placeholder="e.g., Midterm Evaluation" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-darkBorder rounded-xl px-3 py-2.5 focus:outline-none focus:border-brand-500 text-slate-800 dark:text-white">
+                                    <label class="block font-bold text-slate-400 mb-1">Milestone Name</label>
+                                    <input id="exam-title-input" type="text" placeholder="e.g. Mechanics Finals Exam" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-darkBorder rounded-xl px-3 py-2.5 focus:outline-none focus:border-brand-500 text-slate-800 dark:text-white">
                                 </div>
                                 <div class="grid grid-cols-2 gap-2">
                                     <div>
-                                        <label class="block font-bold text-slate-400 mb-1">Day (Date)</label>
+                                        <label class="block font-bold text-slate-400 mb-1">Day of Month</label>
                                         <input id="exam-day-input" type="number" min="1" max="31" value="15" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-darkBorder rounded-xl px-3 py-2.5 focus:outline-none focus:border-brand-500 text-slate-800 dark:text-white font-bold text-center">
                                     </div>
                                     <div>
-                                        <label class="block font-bold text-slate-400 mb-1">Grade Target</label>
+                                        <label class="block font-bold text-slate-400 mb-1">Target Grade</label>
                                         <input id="exam-grade-input" type="text" value="A+" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-darkBorder rounded-xl px-3 py-2.5 focus:outline-none focus:border-brand-500 text-slate-800 dark:text-white font-bold text-center">
                                     </div>
                                 </div>
-                                <button onclick="addNewExamMilestone()" class="w-full py-2.5 bg-rose-500 hover:bg-rose-600 text-white font-bold rounded-xl transition-all shadow-md shadow-rose-500/10 mt-2">Create Milestone</button>
+                                <button onclick="addNewExamMilestone()" class="w-full py-2.5 bg-rose-500 hover:bg-rose-600 text-white font-bold rounded-xl transition-all shadow-md shadow-rose-500/10 mt-2">Map Milestone</button>
                             </div>
                         </div>
 
-                        <!-- Milestone list log -->
+                        <!-- Milestone list logs -->
                         <div class="bg-white dark:bg-darkSurface border border-slate-200 dark:border-darkBorder p-6 rounded-2xl shadow-premium dark:shadow-premium-dark flex-grow">
-                            <h3 class="font-bold text-base dark:text-white mb-4">Milestone Quick Log</h3>
+                            <h3 class="font-bold text-base dark:text-white mb-4">Milestone Quick List</h3>
                             <div class="space-y-3 text-xs max-h-56 overflow-y-auto pr-1" id="calendar-exams-list-container">
                                 <!-- Populated dynamically -->
                             </div>
@@ -473,58 +475,64 @@
                 </div>
             </div>
 
-            <!-- 4. FOCUS TIMER (POMODORO) -->
+            <!-- 4. DYNAMIC LIVE STOPWATCH (UPDATED FROM POMODORO COUNTDOWN) -->
             <div id="view-focus" class="view-panel space-y-8 hidden">
                 <div class="flex items-center justify-between border-b border-slate-200 dark:border-darkBorder pb-5">
                     <div>
-                        <h2 class="text-2xl font-black dark:text-white">Focus Sandbox</h2>
-                        <p class="text-sm text-slate-400">Block outside noises and trigger flow states with synthesis beats.</p>
+                        <h2 class="text-2xl font-black dark:text-white">Live Study Hour Tracker</h2>
+                        <p class="text-sm text-slate-400">Stopwatch run kore live hours and minutes map korun background ambient tones-er sathe.</p>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                    <!-- Timer view slider -->
-                    <div class="lg:col-span-2 bg-gradient-to-br from-slate-900 to-indigo-950 text-white p-8 rounded-2xl border border-indigo-500/20 shadow-xl flex flex-col justify-between relative overflow-hidden">
-                        <div class="absolute -top-12 -right-12 h-44 w-44 bg-brand-500/20 rounded-full blur-2xl pointer-events-none"></div>
-                        <div class="absolute -bottom-12 -left-12 h-44 w-44 bg-indigo-500/10 rounded-full blur-2xl pointer-events-none"></div>
+                    <!-- Realtime StopWatch UI with premium status glow -->
+                    <div class="lg:col-span-2 bg-gradient-to-br from-slate-950 to-slate-900 text-white p-8 rounded-2xl border border-emerald-500/20 shadow-xl flex flex-col justify-between relative overflow-hidden">
+                        <div class="absolute -top-12 -right-12 h-44 w-44 bg-brand-500/10 rounded-full blur-2xl pointer-events-none"></div>
+                        <div id="stopwatch-pulse-glow" class="absolute -bottom-12 -left-12 h-44 w-44 bg-emerald-500/5 rounded-full blur-2xl pointer-events-none transition-all duration-300"></div>
 
                         <div class="flex items-center justify-between z-10">
-                            <span class="text-xs bg-indigo-500/30 text-indigo-200 border border-indigo-500/20 font-bold px-3 py-1 rounded-full uppercase tracking-wider">Synthesized Concentration Beats</span>
-                            <div class="h-2.5 w-2.5 rounded-full bg-indigo-500 animate-pulse"></div>
+                            <span class="text-xs bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-bold px-3 py-1 rounded-full uppercase tracking-wider flex items-center gap-2">
+                                <i class="fa-solid fa-circle text-[8px] animate-pulse" id="stopwatch-dot-indicator"></i>
+                                <span id="stopwatch-status-label">Stopwatch Standby</span>
+                            </span>
+                            <div class="h-2.5 w-2.5 rounded-full bg-emerald-500 hidden animate-ping" id="stopwatch-ping"></div>
                         </div>
 
+                        <!-- Realtime Hour, Minute, Second counters -->
                         <div class="my-10 text-center z-10">
-                            <div class="text-7xl sm:text-8xl font-black tracking-tight font-mono text-indigo-100 drop-shadow" id="timer-display">25:00</div>
-                            <p class="text-xs text-indigo-300 mt-2 font-semibold" id="timer-status-desc">Ready to focus</p>
+                            <div class="text-7xl sm:text-8xl font-black tracking-tight font-mono text-slate-50 drop-shadow-lg" id="stopwatch-display">00:00:00</div>
+                            <p class="text-xs text-slate-400 mt-3 font-semibold" id="stopwatch-subtext">Click "Start Session" to begin charting study hours from zero</p>
                         </div>
 
+                        <!-- Modern Stopwatch Trigger Controls -->
                         <div class="space-y-6 z-10">
-                            <div class="flex justify-center gap-3">
-                                <button onclick="toggleTimer()" id="timer-start-btn" class="px-6 py-3 bg-indigo-500 hover:bg-indigo-600 text-white rounded-xl text-xs font-bold transition-all shadow-md shadow-indigo-500/10 flex items-center gap-1.5"><i class="fa-solid fa-play"></i> Start</button>
-                                <button onclick="resetTimer()" class="px-6 py-3 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5"><i class="fa-solid fa-rotate-left"></i> Reset</button>
+                            <div class="flex justify-center gap-4">
+                                <button onclick="toggleStopwatch()" id="stopwatch-toggle-btn" class="px-8 py-3.5 bg-emerald-500 hover:bg-emerald-600 text-slate-950 rounded-xl text-xs font-bold transition-all shadow-md shadow-emerald-500/20 flex items-center gap-2">
+                                    <i class="fa-solid fa-play"></i> Start Session
+                                </button>
+                                <button onclick="saveAndResetStopwatch()" id="stopwatch-save-btn" class="px-6 py-3.5 bg-brand-600 hover:bg-brand-700 text-white rounded-xl text-xs font-bold transition-all flex items-center gap-2 hidden">
+                                    <i class="fa-solid fa-cloud-arrow-up"></i> End & Save Hours
+                                </button>
+                                <button onclick="resetStopwatch()" class="px-6 py-3.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl text-xs font-bold transition-all flex items-center gap-2">
+                                    <i class="fa-solid fa-rotate-left"></i> Reset
+                                </button>
                             </div>
 
-                            <div class="flex justify-center gap-2 flex-wrap">
-                                <button onclick="setTimerDuration(25)" class="px-3.5 py-1.5 bg-indigo-500/10 hover:bg-indigo-500/20 text-indigo-300 text-[10px] font-bold rounded-lg transition-all">25m Pomodoro</button>
-                                <button onclick="setTimerDuration(5)" class="px-3.5 py-1.5 bg-indigo-500/10 hover:bg-indigo-500/20 text-indigo-300 text-[10px] font-bold rounded-lg transition-all">5m Short Break</button>
-                                <button onclick="setTimerDuration(15)" class="px-3.5 py-1.5 bg-indigo-500/10 hover:bg-indigo-500/20 text-indigo-300 text-[10px] font-bold rounded-lg transition-all">15m Long Break</button>
-                            </div>
-
-                            <!-- Custom minutes application -->
-                            <div class="flex justify-center items-center gap-3 pt-4 border-t border-indigo-500/15">
-                                <span class="text-xs text-indigo-300 font-bold">Custom Timer Set:</span>
-                                <input type="number" id="custom-timer-input" min="1" max="180" value="25" class="w-16 px-2.5 py-1.5 bg-slate-800 border border-indigo-500/30 text-white rounded-lg text-xs font-bold focus:outline-none focus:border-indigo-500 text-center">
-                                <button onclick="setCustomTimerDuration()" class="px-4 py-1.5 bg-indigo-500 hover:bg-indigo-600 text-white rounded-lg text-xs font-bold transition-all shadow-md shadow-indigo-500/20">Apply</button>
+                            <div class="pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
+                                <span>Subject Association:</span>
+                                <select id="timer-subject-select" class="bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-white font-medium focus:outline-none focus:border-emerald-500 min-w-[200px]">
+                                    <!-- Populated dynamically -->
+                                </select>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Audio Ambient Synthesizer system -->
+                    <!-- Ambient synthesized sounds mapping -->
                     <div class="bg-white dark:bg-darkSurface border border-slate-200 dark:border-darkBorder p-6 rounded-2xl shadow-premium dark:shadow-premium-dark flex flex-col justify-between">
                         <div class="space-y-4">
                             <div>
                                 <h3 class="font-bold text-base dark:text-white">Synth Soundscapes</h3>
-                                <p class="text-xs text-slate-400">Generate non-network study waves locally with the Web Audio synthesizer.</p>
+                                <p class="text-xs text-slate-400">Concentrate background waves initialized on audio context locally.</p>
                             </div>
 
                             <div class="space-y-2.5 text-xs">
@@ -544,38 +552,34 @@
 
                             <div class="pt-2">
                                 <div class="flex justify-between text-[11px] font-bold text-slate-400 mb-1.5">
-                                    <span>Synthesizer Volume</span>
+                                    <span>Ambient Volume</span>
                                     <span id="synth-vol-label">30%</span>
                                 </div>
-                                <input type="range" min="0" max="100" value="30" oninput="adjustSynthVolume(this.value)" class="w-full h-1 bg-slate-200 dark:bg-slate-800 rounded-lg appearance-none cursor-pointer accent-indigo-500">
+                                <input type="range" min="0" max="100" value="30" oninput="adjustSynthVolume(this.value)" class="w-full h-1 bg-slate-200 dark:bg-slate-800 rounded-lg appearance-none cursor-pointer accent-emerald-500">
                             </div>
                         </div>
 
-                        <div class="mt-6 pt-6 border-t border-slate-100 dark:border-darkBorder text-xs space-y-3">
-                            <div>
-                                <label class="block font-bold text-slate-400 mb-1">Log flow hours to track:</label>
-                                <select id="timer-subject-select" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-darkBorder rounded-xl px-3 py-2.5 focus:outline-none focus:border-indigo-500 text-slate-800 dark:text-white font-medium">
-                                    <!-- Populated dynamically -->
-                                </select>
-                            </div>
+                        <div class="mt-6 pt-4 border-t border-slate-100 dark:border-darkBorder text-xs text-slate-400">
+                            <i class="fa-solid fa-lightbulb mr-1.5 text-amber-500"></i>
+                            Stopwatch cholbe background tracking features support soho.
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- 5. ANALYTICS VIEWS -->
+            <!-- 5. ANALYTICS GRAPHS -->
             <div id="view-analytics" class="view-panel space-y-8 hidden">
                 <div class="flex items-center justify-between border-b border-slate-200 dark:border-darkBorder pb-5">
                     <div>
-                        <h2 class="text-2xl font-black dark:text-white">Study Analytics Hub</h2>
-                        <p class="text-sm text-slate-400">Track distribution rates and analyze cumulative trends across your curriculum.</p>
+                        <h2 class="text-2xl font-black dark:text-white">Study Analytics</h2>
+                        <p class="text-sm text-slate-400">Compare curriculum completions against study logs dynamically.</p>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                     <div class="lg:col-span-2 bg-white dark:bg-darkSurface border border-slate-200 dark:border-darkBorder p-6 rounded-2xl shadow-premium dark:shadow-premium-dark">
-                        <h3 class="font-bold text-base dark:text-white mb-2">Syllabus Hours Logged</h3>
-                        <p class="text-xs text-slate-400 mb-4">Total volume of study hour checkpoints configured across active subjects</p>
+                        <h3 class="font-bold text-base dark:text-white mb-2">Subject Targets compared to Hours Logged</h3>
+                        <p class="text-xs text-slate-400 mb-4">Total target limits compared directly with accumulated stopwatch sessions</p>
                         <div class="relative h-64">
                             <canvas id="analyticsDistributionChart"></canvas>
                         </div>
@@ -583,8 +587,8 @@
 
                     <div class="bg-white dark:bg-darkSurface border border-slate-200 dark:border-darkBorder p-6 rounded-2xl shadow-premium dark:shadow-premium-dark flex flex-col justify-between">
                         <div>
-                            <h3 class="font-bold text-base dark:text-white mb-3">Mastery Grades</h3>
-                            <p class="text-xs text-slate-400 mb-4">Your estimated current grade status according to syllabus progress rates</p>
+                            <h3 class="font-bold text-base dark:text-white mb-3">Live Mastery Status</h3>
+                            <p class="text-xs text-slate-400 mb-4">Assessed target grades compared with total logged chapters</p>
                             
                             <div class="space-y-3 text-xs" id="analytics-mastery-list">
                                 <!-- Populated dynamically -->
@@ -592,43 +596,43 @@
                         </div>
 
                         <div class="mt-6 pt-4 border-t border-slate-100 dark:border-darkBorder text-xs text-slate-400 flex items-center justify-between">
-                            <span>Evaluated on 2026/06/15</span>
-                            <span class="font-bold text-indigo-500">Stitch AI Auditor</span>
+                            <span>Evaluated Realtime</span>
+                            <span class="font-bold text-indigo-500">Stitch AI Engine</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="bg-white dark:bg-darkSurface border border-slate-200 dark:border-darkBorder p-6 rounded-2xl shadow-premium dark:shadow-premium-dark">
-                    <h3 class="font-bold text-base dark:text-white mb-2">Subject Progress Rates (%)</h3>
-                    <p class="text-xs text-slate-400 mb-4">Relative syllabus completion levels computed from chapters checks</p>
+                    <h3 class="font-bold text-base dark:text-white mb-2">Syllabus Completion Rates (%)</h3>
+                    <p class="text-xs text-slate-400 mb-4">Percentage rating computed from checked topics and checkpoints</p>
                     <div class="relative h-64">
                         <canvas id="analyticsTrendChart"></canvas>
                     </div>
                 </div>
             </div>
 
-            <!-- 6. PREFERENCES / SETTINGS VIEW -->
+            <!-- 6. USER PROFILE & SETTINGS -->
             <div id="view-settings" class="view-panel space-y-8 hidden">
                 <div class="flex items-center justify-between border-b border-slate-200 dark:border-darkBorder pb-5">
                     <div>
-                        <h2 class="text-2xl font-black dark:text-white">Preferences</h2>
-                        <p class="text-sm text-slate-400">Configure your workspace defaults and account identity details.</p>
+                        <h2 class="text-2xl font-black dark:text-white">Workspace Preferences</h2>
+                        <p class="text-sm text-slate-400">Customize display credentials, names, values, and tracking limits.</p>
                     </div>
                 </div>
 
                 <div class="max-w-3xl bg-white dark:bg-darkSurface border border-slate-200 dark:border-darkBorder rounded-2xl shadow-premium dark:shadow-premium-dark divide-y divide-slate-100 dark:divide-darkBorder">
                     <div class="p-6 flex items-center justify-between gap-4">
                         <div>
-                            <h4 class="text-sm font-bold dark:text-white">Scholar Display Name</h4>
-                            <p class="text-xs text-slate-400">Configure how you appear inside study updates and dashboard metrics.</p>
+                            <h4 class="text-sm font-bold dark:text-white">Display Name</h4>
+                            <p class="text-xs text-slate-400">Customize display headers on progress cards.</p>
                         </div>
                         <input id="settings-name-input" type="text" value="Scholar Mode" class="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-darkBorder rounded-xl px-4 py-2.5 text-xs font-semibold focus:outline-none focus:border-brand-500 text-slate-800 dark:text-white w-64">
                     </div>
 
                     <div class="p-6 flex items-center justify-between gap-4">
                         <div>
-                            <h4 class="text-sm font-bold dark:text-white">Binaural Waves Synthesis Tone</h4>
-                            <p class="text-xs text-slate-400">Adjust the carrier base frequency for local binaural oscillation synthesis (Hz).</p>
+                            <h4 class="text-sm font-bold dark:text-white">Binaural Waves Base Tone</h4>
+                            <p class="text-xs text-slate-400">Carrier waves synthesis base frequency adjustments (Hz).</p>
                         </div>
                         <select id="settings-synth-freq" class="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-darkBorder rounded-xl px-4 py-2.5 text-xs font-bold focus:outline-none focus:border-brand-500 text-slate-800 dark:text-white w-64">
                             <option value="150">150 Hz (Low alpha)</option>
@@ -638,7 +642,7 @@
                     </div>
 
                     <div class="p-6 bg-slate-50/50 dark:bg-slate-800/20 flex items-center justify-between gap-4 rounded-b-2xl">
-                        <p class="text-xs text-slate-400">Values are retained locally on your computer device instance.</p>
+                        <p class="text-xs text-slate-400">Adjustments saved and updated automatically.</p>
                         <button onclick="saveWorkspaceSettings()" class="px-5 py-2.5 bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold rounded-xl transition-all shadow-md shadow-brand-500/10">Save Changes</button>
                     </div>
                 </div>
@@ -647,7 +651,7 @@
         </main>
     </div>
 
-    <!-- MODAL POPUP: CREATE SUBJECT TRACK -->
+    <!-- MODAL POPUP COMPONENT TO CREATE SUBJECT -->
     <div id="add-subject-modal" class="fixed inset-0 z-50 overflow-y-auto hidden">
         <div class="fixed inset-0 bg-slate-950/60 dark:bg-slate-950/80 backdrop-blur-xs transition-opacity" onclick="closeAddSubjectModal()"></div>
         
@@ -662,7 +666,7 @@
                     <div class="space-y-5 text-xs">
                         <div>
                             <label class="block font-bold text-slate-400 mb-1.5">Subject Track Name</label>
-                            <input id="add-subject-name" type="text" placeholder="e.g., Organic Chemistry" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-darkBorder rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-brand-500 text-slate-800 dark:text-white font-medium">
+                            <input id="add-subject-name" type="text" placeholder="e.g. Linear Algebra" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-darkBorder rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-brand-500 text-slate-800 dark:text-white font-medium">
                         </div>
 
                         <div class="grid grid-cols-2 gap-4">
@@ -671,13 +675,13 @@
                                 <input id="add-subject-hours" type="number" value="60" min="1" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-darkBorder rounded-xl px-4 py-2.5 text-xs font-bold focus:outline-none focus:border-brand-500 text-slate-800 dark:text-white">
                             </div>
                             <div>
-                                <label class="block font-bold text-slate-400 mb-1.5">Subject Grade Target</label>
-                                <input id="add-subject-grade" type="text" value="A" placeholder="e.g., A+" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-darkBorder rounded-xl px-4 py-2.5 text-xs font-bold focus:outline-none focus:border-brand-500 text-slate-800 dark:text-white text-center">
+                                <label class="block font-bold text-slate-400 mb-1.5">Target Grade</label>
+                                <input id="add-subject-grade" type="text" value="A" placeholder="e.g. A+" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-darkBorder rounded-xl px-4 py-2.5 text-xs font-bold focus:outline-none focus:border-brand-500 text-slate-800 dark:text-white text-center">
                             </div>
                         </div>
 
                         <div>
-                            <label class="block font-bold text-slate-400 mb-2">Subject Accent Theme Color</label>
+                            <label class="block font-bold text-slate-400 mb-2">Subject Accent Color Selection</label>
                             <div class="flex gap-2.5 flex-wrap">
                                 <button onclick="selectModalColor('#6366f1', 'indigo')" class="h-8 w-8 rounded-full bg-indigo-500 border-2 border-transparent transition-all relative flex items-center justify-center" id="color-btn-indigo">
                                     <i class="fa-solid fa-check text-white text-[10px] hidden" id="color-check-indigo"></i>
@@ -711,21 +715,22 @@
     </div>
 
 
-    <!-- CLOUD FIREBASE SYNC INTEGRATION MODULE -->
+    <!-- CLOUD FIREBASE SYNC SCRIPT INTEGRATION (RULE 1, 2, 3 optimization checks intact) -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        // Local Storage Pipeline Loader
+        // Local Storage state management fallback
         function loadLocalState() {
             const saved = localStorage.getItem('stitch_studytrack_state');
             if (saved) {
                 try {
                     const parsed = JSON.parse(saved);
+                    // Local properties assign details checking
                     Object.assign(APP_STATE, parsed);
                 } catch(e) {
-                    console.log("Local state fallback exception handled safely.");
+                    console.log("Local state load parameters parsed safely.");
                 }
             }
             window.saveStateToCloud = () => {
@@ -733,10 +738,10 @@
             };
         }
 
-        // Firebase Auth & Sync Engine (RULE 3)
+        // Firebase Setup & Realtime Persistence Engine (Rule 3)
         async function initSyncEngine() {
             if (typeof __firebase_config === 'undefined' || !__firebase_config) {
-                console.log("Firebase config undefined. Initializing Local Storage fallback.");
+                console.log("Firebase configs unmapped. Falling back to local device cache.");
                 loadLocalState();
                 syncRenderAndInit();
                 return;
@@ -760,19 +765,19 @@
                 const user = credential.user;
                 if (user) {
                     const userId = user.uid;
-                    // Strict Paths configured under RULE 1
+                    // Rule 1 configuration validation
                     const stateDocRef = doc(db, 'artifacts', appId, 'users', userId, 'userData', 'dashboardState');
                     const snapshot = await getDoc(stateDocRef);
 
                     if (snapshot.exists()) {
                         const cloudData = snapshot.data();
                         Object.assign(APP_STATE, cloudData);
-                        showNotification("Cloud Firestore Sync successful! Loaded latest stats.", "success");
+                        showNotification("Cloud Firestore: State sync kora hoyeche successfully!", "success");
                     } else {
                         await setDoc(stateDocRef, APP_STATE);
                     }
 
-                    // Global Save Interface
+                    // Global wrapper updates interface
                     window.saveStateToCloud = async () => {
                         try {
                             if (auth.currentUser) {
@@ -780,12 +785,12 @@
                                 await setDoc(ref, APP_STATE);
                             }
                         } catch (err) {
-                            console.error("Firestore Persistent Save Error: ", err);
+                            console.error("Firestore persistence failed to commit updates: ", err);
                         }
                     };
                 }
             } catch (err) {
-                console.warn("Sync pipeline error, falling back to offline: ", err);
+                console.warn("Cloud connection error, falling back to local client state: ", err);
                 loadLocalState();
             }
 
@@ -809,9 +814,9 @@
         });
     </script>
 
-    <!-- CORE SCRIPTS & ACTION CONTROLLERS -->
+    <!-- MAIN JAVASCRIPT APP CONTROLLERS -->
     <script>
-        // Default Local Model Data State
+        // App State dynamic core data model
         const APP_STATE = {
             theme: 'dark',
             currentView: 'dashboard',
@@ -829,8 +834,7 @@
                         { id: 'phy-ch1', title: 'Classical Mechanics & Kinematics', completed: true, subtasks: 4 },
                         { id: 'phy-ch2', title: 'Newtonian Laws of Motion & Force', completed: true, subtasks: 6 },
                         { id: 'phy-ch3', title: 'Work, Energy, & Harmonic Oscillators', completed: false, subtasks: 5 },
-                        { id: 'phy-ch4', title: 'Electromagnetism & Maxwell Equations', completed: false, subtasks: 8 },
-                        { id: 'phy-ch5', title: 'Fluid Dynamics & Special Relativity', completed: false, subtasks: 3 }
+                        { id: 'phy-ch4', title: 'Electromagnetism & Maxwell Equations', completed: false, subtasks: 8 }
                     ],
                     recentNotes: [
                         { date: 'June 10', text: 'Reviewed orbital velocity & kinetic energy derivations.' },
@@ -847,8 +851,7 @@
                     grade: 'A-',
                     chapters: [
                         { id: 'calc-ch1', title: 'Partial Derivatives & Gradients', completed: true, subtasks: 5 },
-                        { id: 'calc-ch2', title: 'Double & Triple Integrals', completed: true, subtasks: 4 },
-                        { id: 'calc-ch3', title: 'Vector Fields, Stokes & Divergence', completed: false, subtasks: 7 }
+                        { id: 'calc-ch2', title: 'Double & Triple Integrals', completed: true, subtasks: 4 }
                     ],
                     recentNotes: [
                         { date: 'June 12', text: 'Practiced double integrals in polar coordinates.' }
@@ -864,8 +867,7 @@
                     grade: 'A+',
                     chapters: [
                         { id: 'cs-ch1', title: 'Trees, Heaps & Priority Queues', completed: true, subtasks: 10 },
-                        { id: 'cs-ch2', title: 'Dynamic Programming & Memoization', completed: false, subtasks: 12 },
-                        { id: 'cs-ch3', title: 'Graph Algorithms & Shortest Path', completed: false, subtasks: 8 }
+                        { id: 'cs-ch2', title: 'Dynamic Programming & Memoization', completed: false, subtasks: 12 }
                     ],
                     recentNotes: [
                         { date: 'June 11', text: 'Completed memoization challenges on LCS algorithms.' }
@@ -879,21 +881,24 @@
             ]
         };
 
+        // Modal selected state colors parameters
         let selectedColorHex = '#6366f1';
         let selectedColorName = 'indigo';
 
-        let dashWeeklyChartInstance = null;
+        // Chart.js instances references
+        let dashSubjectPieChartInstance = null;
         let analyticsDistributionChartInstance = null;
         let analyticsTrendChartInstance = null;
 
-        let timerInterval = null;
-        let timerMinutesLeft = 25;
-        let timerSecondsLeft = 0;
-        let isTimerRunning = false;
+        // Count-Up Live Stopwatch Parameters
+        let stopwatchSeconds = 0;
+        let stopwatchInterval = null;
+        let isStopwatchRunning = false;
 
         let calendarCurrentYear = 2026;
-        let calendarCurrentMonth = 5; // June is 5 in JS Date (0-indexed)
+        let calendarCurrentMonth = 5; // June month value index in Javascript Date (0-indexed)
 
+        // Web Audio components API
         let audioCtx = null;
         let synthOscillator = null;
         let synthFilter = null;
@@ -901,14 +906,14 @@
         let activeSynthType = null; 
         let synthVolumeLevel = 0.3; 
 
-        // State change helper
+        // Local state change helper committing updates
         function triggerPersistentSave() {
             if (window.saveStateToCloud) {
                 window.saveStateToCloud();
             }
         }
 
-        // Custom Notification box
+        // Custom Premium Notification System in Banglish
         function showNotification(message, type = 'info') {
             const container = document.getElementById('toast-container');
             if (!container) return;
@@ -936,7 +941,7 @@
             }, 3000);
         }
 
-        // Theme controller toggle
+        // Theme controllers toggles switcher
         function toggleTheme() {
             if (document.documentElement.classList.contains('dark')) {
                 document.documentElement.classList.remove('dark');
@@ -951,7 +956,7 @@
             triggerPersistentSave();
         }
 
-        // Global Page View Switcher
+        // Display View Navigator
         function switchView(viewName) {
             APP_STATE.currentView = viewName;
             
@@ -972,13 +977,13 @@
                 'dashboard': 'Dashboard Overview',
                 'physics-overview': 'Syllabus Tracker Console',
                 'calendar': 'Exam Milestones Calendar',
-                'focus': 'Focus Soundscape Sandbox',
-                'analytics': 'Cumulative Study Analytics',
+                'focus': 'Live Study Stopwatch Tracker',
+                'analytics': 'Study Performance Analytics',
                 'settings': 'System Preferences'
             };
             const headerTitleEl = document.getElementById('header-title');
             if (headerTitleEl) {
-                headerTitleEl.innerText = titles[viewName] || 'Stitch Suite';
+                headerTitleEl.innerText = titles[viewName] || 'Stitch Tracker';
             }
 
             if (viewName === 'calendar') {
@@ -995,14 +1000,14 @@
             triggerPersistentSave();
         }
 
-        // Detail View transition for clicked subject (FIXED BUG - Dynamic update propagation)
+        // Transition selector helper for clicked cards redirection
         function viewSubjectTracker(subjectId) {
             APP_STATE.activeSubjectId = subjectId;
             renderActiveSubjectDetails();
             switchView('physics-overview');
         }
 
-        // Hotkeys action triggers
+        // Standard hotkey mappings for desktop console feeling
         window.addEventListener('keydown', function(e) {
             if (e.altKey) {
                 const key = e.key.toLowerCase();
@@ -1010,19 +1015,17 @@
                 if (hotkeys[key]) {
                     e.preventDefault();
                     switchView(hotkeys[key]);
-                    showNotification(`Hotkey trigger: Jumped to ${hotkeys[key]}`);
+                    showNotification(`View navigation loaded: Jumped to ${hotkeys[key]}`);
                 }
             }
         });
 
-        // Dashboard overall progress compilation
+        // Dashboard overall variables and data metrics computations
         function renderDashboardMetrics() {
-            let totalHoursAssigned = 0;
             let totalHoursCompleted = 0;
             let sumRates = 0;
 
             APP_STATE.subjects.forEach(s => {
-                totalHoursAssigned += s.targetHours;
                 totalHoursCompleted += s.completedHours;
                 const totalCh = s.chapters ? s.chapters.length : 0;
                 const compCh = s.chapters ? s.chapters.filter(c => c.completed).length : 0;
@@ -1034,14 +1037,20 @@
                 : 0;
 
             document.getElementById('stat-total-progress').innerText = `${overallRate}%`;
-            document.getElementById('stat-total-hours').innerText = `${totalHoursCompleted} hrs`;
+
+            // Professional dynamic conversion mapping to show Hours and Minutes details
+            const floorHours = Math.floor(totalHoursCompleted);
+            const remainingMinutes = Math.round((totalHoursCompleted - floorHours) * 60);
+            
+            document.getElementById('stat-total-hours').innerText = `${floorHours} hrs ${remainingMinutes} mins`;
+            document.getElementById('stat-minutes-subtext').innerText = `${remainingMinutes} precise mins parsed`;
             document.getElementById('stat-exams-count').innerText = `${APP_STATE.exams.length} Exams`;
 
             if (APP_STATE.exams.length > 0) {
                 const sortedEx = [...APP_STATE.exams].sort((a,b) => a.day - b.day);
                 document.getElementById('stat-next-exam').innerText = `${sortedEx[0].title} (Day ${sortedEx[0].day})`;
             } else {
-                document.getElementById('stat-next-exam').innerText = `No exams pending`;
+                document.getElementById('stat-next-exam').innerText = `No pending milestones`;
             }
 
             renderSubjects();
@@ -1049,21 +1058,21 @@
             renderTimerSubjects();
         }
 
-        // Upcoming milestone events log
+        // Render upcoming milestone lists
         function renderUpcomingExamsList() {
             const container = document.getElementById('dash-upcoming-exams-list');
             if (!container) return;
 
             container.innerHTML = '';
             if (APP_STATE.exams.length === 0) {
-                container.innerHTML = '<p class="text-xs text-slate-400 italic">No exams recorded yet.</p>';
+                container.innerHTML = '<p class="text-xs text-slate-400 italic">No schedules configured.</p>';
                 return;
             }
 
             const sorted = [...APP_STATE.exams].sort((a,b) => a.day - b.day);
             sorted.slice(0, 3).forEach(ex => {
                 const subject = APP_STATE.subjects.find(s => s.id === ex.subjectId);
-                const subName = subject ? subject.name : 'General Subject';
+                const subName = subject ? subject.name : 'Unassociated';
                 const accentColor = subject ? subject.color : '#f43f5e';
                 
                 container.innerHTML += `
@@ -1072,7 +1081,7 @@
                             <div class="h-2.5 w-2.5 rounded-full" style="background-color: ${accentColor}"></div>
                             <div>
                                 <h4 class="font-bold text-xs dark:text-white">${ex.title}</h4>
-                                <span class="text-[10px] text-slate-400 font-semibold">${subName} &mdash; Target: ${ex.grade}</span>
+                                <span class="text-[10px] text-slate-400 font-semibold">${subName} &mdash; Target Grade: ${ex.grade}</span>
                             </div>
                         </div>
                         <div class="text-right">
@@ -1084,7 +1093,7 @@
             });
         }
 
-        // Subject Track Card dynamic elements (FIXED BUG: Added precise click redirects)
+        // Render subject cards in dashboard
         function renderSubjects() {
             const container = document.getElementById('dashboard-subjects-container');
             if (!container) return;
@@ -1094,8 +1103,8 @@
                 container.innerHTML = `
                     <div class="col-span-3 py-16 text-center text-slate-400 dark:text-slate-500 border border-dashed border-slate-200 dark:border-darkBorder rounded-2xl bg-white dark:bg-darkSurface">
                         <i class="fa-solid fa-folder-open text-4xl mb-3 block text-slate-300 dark:text-slate-600"></i>
-                        <p class="text-sm font-semibold">No active subject tracks found.</p>
-                        <p class="text-xs mt-1 text-slate-400">Create a new subject track to begin charting progress.</p>
+                        <p class="text-sm font-semibold">No active subject tracks mapping metrics.</p>
+                        <p class="text-xs mt-1 text-slate-400">Press create on header parameters to begin tracking.</p>
                     </div>
                 `;
                 return;
@@ -1105,12 +1114,15 @@
                 const totalChapters = subject.chapters ? subject.chapters.length : 0;
                 const completedChapters = subject.chapters ? subject.chapters.filter(c => c.completed).length : 0;
                 const progress = totalChapters > 0 ? Math.round((completedChapters / totalChapters) * 100) : 0;
+
+                const cardHoursFloor = Math.floor(subject.completedHours);
+                const cardMinsRemaining = Math.round((subject.completedHours - cardHoursFloor) * 60);
                 
                 const cardHTML = `
                     <div onclick="viewSubjectTracker('${subject.id}')" class="bg-white dark:bg-darkSurface border border-slate-200 dark:border-darkBorder p-6 rounded-2xl shadow-premium dark:shadow-premium-dark flex flex-col justify-between hover:scale-[1.01] transition-all duration-200 cursor-pointer">
                         <div>
                             <div class="flex items-center justify-between mb-4">
-                                <span class="text-[10px] font-extrabold uppercase tracking-widest text-slate-400">Mastery Grade: ${subject.grade}</span>
+                                <span class="text-[10px] font-extrabold uppercase tracking-widest text-slate-400">Target Grade Level: ${subject.grade}</span>
                                 <div class="flex items-center gap-2" onclick="event.stopPropagation();">
                                     <button onclick="deleteSubject('${subject.id}')" class="p-1.5 hover:bg-rose-500/10 text-slate-400 hover:text-rose-500 rounded-lg transition-all" title="Delete Subject">
                                         <i class="fa-solid fa-trash-can text-xs"></i>
@@ -1120,21 +1132,21 @@
                             </div>
                             <h4 class="font-black text-base dark:text-white">${subject.name}</h4>
                             <div class="flex justify-between items-center text-xs text-slate-400 mt-1.5">
-                                <span>Logged ${subject.completedHours} of ${subject.targetHours} Hours</span>
+                                <span>Logged: ${cardHoursFloor} hrs ${cardMinsRemaining} mins / Goal: ${subject.targetHours}h</span>
                                 <span class="font-semibold text-slate-500 dark:text-slate-300">${totalChapters} Chapters</span>
                             </div>
                         </div>
 
                         <div class="mt-8 space-y-4">
                             <div class="flex justify-between text-xs font-bold text-slate-500 dark:text-slate-300">
-                                <span>Syllabus Progress Rate</span>
+                                <span>Topic Completion Progress</span>
                                 <span>${progress}%</span>
                             </div>
                             <div class="w-full bg-slate-100 dark:bg-slate-800 h-2 rounded-full overflow-hidden">
                                 <div class="h-full rounded-full" style="width: ${progress}%; background-color: ${subject.color}"></div>
                             </div>
                             <button onclick="event.stopPropagation(); viewSubjectTracker('${subject.id}')" class="w-full py-2.5 bg-slate-50 dark:bg-slate-800/80 hover:bg-slate-100 dark:hover:bg-slate-700/60 text-slate-700 dark:text-slate-300 text-xs font-bold rounded-xl transition-all flex items-center justify-center gap-1.5 border border-slate-200/50 dark:border-darkBorder">
-                                <i class="fa-solid fa-folder-open text-xs"></i> View Syllabus Tracker
+                                <i class="fa-solid fa-folder-open text-xs"></i> Open Syllabus Tracker
                             </button>
                         </div>
                     </div>
@@ -1143,7 +1155,7 @@
             });
         }
 
-        // Delete Subject Action
+        // Delete Subject dynamic handlers
         function deleteSubject(subjectId) {
             const subject = APP_STATE.subjects.find(s => s.id === subjectId);
             if (!subject) return;
@@ -1156,19 +1168,20 @@
             }
 
             renderDashboardMetrics();
-            showNotification(`Removed Subject Track "${subject.name}"`);
+            initCharts();
+            showNotification(`Subject Track "${subject.name}" successfully remove kora hoyeche.`);
             triggerPersistentSave();
         }
 
-        // active syllabus elements updater (FIXED BUG - dynamic elements selection)
+        // Sync detailed metrics fields for selected active study course
         function renderActiveSubjectDetails() {
             const activeSub = APP_STATE.subjects.find(s => s.id === APP_STATE.activeSubjectId);
             if (!activeSub) {
-                document.getElementById('physics-header-title').innerText = "No Subject Tracks Configured";
+                document.getElementById('physics-header-title').innerText = "No Subject Configuration Found";
                 document.getElementById('physics-chapters-list').innerHTML = `
                     <div class="py-16 text-center text-slate-400 dark:text-slate-500">
                         <i class="fa-solid fa-inbox text-4xl mb-3 block text-slate-300 dark:text-slate-600"></i>
-                        <p class="text-sm font-semibold">Please create a study track from your dashboard to configure chapters.</p>
+                        <p class="text-sm font-semibold font-mono">Create a subject track from dashboard controls first.</p>
                     </div>
                 `;
                 return;
@@ -1193,7 +1206,7 @@
 
             const stdBadge = document.getElementById('syllabus-standard-badge');
             if (stdBadge) {
-                stdBadge.innerText = `${activeSub.name} Curriculum Standard`;
+                stdBadge.innerText = `${activeSub.name} Academic Path`;
                 stdBadge.style.color = activeSub.color;
             }
 
@@ -1201,7 +1214,7 @@
             renderPhysicsChapters();
         }
 
-        // Notes log rendering logic
+        // Render physics/academic notes log
         function renderPhysicsNotes() {
             const container = document.getElementById('physics-notes-list');
             if (!container) return;
@@ -1211,7 +1224,7 @@
 
             container.innerHTML = '';
             if (!activeSub.recentNotes || activeSub.recentNotes.length === 0) {
-                container.innerHTML = '<p class="text-[11px] text-slate-400 italic">No notes written yet. Insert study coordinates below.</p>';
+                container.innerHTML = '<p class="text-[11px] text-slate-400 italic">No learning journals written yet. Add notes below.</p>';
                 return;
             }
 
@@ -1228,7 +1241,7 @@
             });
         }
 
-        // Add note log element
+        // Add note log parameter
         function addPhysicsNote() {
             const input = document.getElementById('physics-note-input');
             if (!input || !input.value.trim()) return;
@@ -1244,11 +1257,11 @@
 
             input.value = '';
             renderPhysicsNotes();
-            showNotification('Saved study tracker note successfully.');
+            showNotification('Academic study track notes saved successfully.');
             triggerPersistentSave();
         }
 
-        // Chapter rendering elements
+        // Render syllabus chapters check list
         function renderPhysicsChapters() {
             const container = document.getElementById('physics-chapters-list');
             if (!container) return;
@@ -1261,8 +1274,8 @@
                 container.innerHTML = `
                     <div class="py-16 text-center text-slate-400 dark:text-slate-500 border border-dashed border-slate-200 dark:border-darkBorder rounded-xl bg-slate-50/50 dark:bg-slate-900/10">
                         <i class="fa-solid fa-diagram-project text-3xl mb-2 block text-slate-300 dark:text-slate-600"></i>
-                        <p class="text-xs font-bold">No Syllabus Chapters Assigned</p>
-                        <p class="text-[10px] mt-0.5">Use the controller on the right to append curriculum objectives.</p>
+                        <p class="text-xs font-bold">No Syllabus Chapters mapped yet.</p>
+                        <p class="text-[10px] mt-0.5">Use the right side console control to append goals.</p>
                     </div>
                 `;
                 calculatePhysicsProgress();
@@ -1283,7 +1296,7 @@
                             </button>
                             <div>
                                 <h4 class="text-xs font-bold dark:text-white ${isCompleted ? 'line-through text-slate-400 dark:text-slate-500' : ''}">${ch.title}</h4>
-                                <span class="text-[9px] text-slate-400 font-semibold">${ch.subtasks} sub-topic checkpoints</span>
+                                <span class="text-[9px] text-slate-400 font-semibold">${ch.subtasks} sub-topic checkpoints mapped</span>
                             </div>
                         </div>
                         <div class="flex items-center gap-3">
@@ -1299,18 +1312,18 @@
             calculatePhysicsProgress();
         }
 
-        // Toggle checkpoint status completion
+        // Toggle syllabus progress parameters completions
         function toggleChapterCompletion(idx) {
             const activeSub = APP_STATE.subjects.find(s => s.id === APP_STATE.activeSubjectId);
             if (activeSub && activeSub.chapters[idx]) {
                 activeSub.chapters[idx].completed = !activeSub.chapters[idx].completed;
                 renderPhysicsChapters();
-                showNotification('Syllabus metrics updated dynamically.');
+                showNotification('Syllabus checklists parameters updated successfully.');
                 triggerPersistentSave();
             }
         }
 
-        // Add syllabus chapter logic (FIXED BUG: Fully structural validation & list update integration)
+        // Append new learning chapter log targets
         function addChapterToActiveSubject() {
             const activeSub = APP_STATE.subjects.find(s => s.id === APP_STATE.activeSubjectId);
             if (!activeSub) {
@@ -1322,7 +1335,7 @@
             const subtasksInput = document.getElementById('chapter-subtasks-input');
 
             if (!titleInput || !titleInput.value.trim()) {
-                showNotification('Chapter Title cannot be left blank.', 'error');
+                showNotification('Chapter Title cannot be left empty.', 'error');
                 return;
             }
 
@@ -1339,28 +1352,27 @@
 
             activeSub.chapters.push(newChapter);
 
-            // Reset input values
             titleInput.value = '';
             subtasksInput.value = '5';
             
             renderPhysicsChapters();
-            showNotification(`New chapter "${newChapter.title}" added successfully!`, 'success');
+            showNotification(`New chapter "${newChapter.title}" successfully add kora hoyeche!`, 'success');
             triggerPersistentSave();
         }
 
-        // Delete syllabus chapter
+        // Delete chapters from active lists
         function deleteChapterFromActiveSubject(idx) {
             const activeSub = APP_STATE.subjects.find(s => s.id === APP_STATE.activeSubjectId);
             if (activeSub && activeSub.chapters) {
                 const deleted = activeSub.chapters[idx];
                 activeSub.chapters.splice(idx, 1);
                 renderPhysicsChapters();
-                showNotification(`Removed syllabus chapter "${deleted.title}"`);
+                showNotification(`Chapter "${deleted.title}" deleted.`);
                 triggerPersistentSave();
             }
         }
 
-        // Recalculate and update progression bar
+        // Process status completion percentages calculation formulas
         function calculatePhysicsProgress() {
             const activeSub = APP_STATE.subjects.find(s => s.id === APP_STATE.activeSubjectId);
             if (!activeSub) return;
@@ -1376,12 +1388,16 @@
                 prgBar.style.background = `linear-gradient(to right, ${activeSub.color}, #a855f7)`;
             }
 
-            document.getElementById('physics-completed-hours-lbl').innerText = `${activeSub.completedHours} hours logged`;
-            document.getElementById('physics-target-hours-lbl').innerText = `${activeSub.targetHours}.0 hours goal`;
-            document.getElementById('subject-target-hours-desc').innerText = `Targeting ${activeSub.targetHours} hours total study flow`;
+            // Realtime conversion to Hours and Minutes representation in subview details
+            const compHoursFloor = Math.floor(activeSub.completedHours);
+            const compMinsRemaining = Math.round((activeSub.completedHours - compHoursFloor) * 60);
+
+            document.getElementById('physics-completed-hours-lbl').innerText = `${compHoursFloor}h ${compMinsRemaining}m completed`;
+            document.getElementById('physics-target-hours-lbl').innerText = `${activeSub.targetHours}h total goal`;
+            document.getElementById('subject-target-hours-desc').innerText = `Targeting ${activeSub.targetHours} hours syllabus mastery`;
         }
 
-        // Month switcher for calendar
+        // Calendar views controller
         function navigateCalendar(dir) {
             calendarCurrentMonth += dir;
             if (calendarCurrentMonth < 0) {
@@ -1394,7 +1410,7 @@
             renderCalendar();
         }
 
-        // Calendar dynamic grid generator
+        // Render Calendar dynamic tables representation
         function renderCalendar() {
             const monthLabels = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
             document.getElementById('calendar-month-year-label').innerText = `${monthLabels[calendarCurrentMonth]} ${calendarCurrentYear}`;
@@ -1443,20 +1459,20 @@
             renderExamsDropdowns();
         }
 
-        // Exam list sidebar rendering log
+        // Render exams scheduling
         function renderExams() {
             const container = document.getElementById('calendar-exams-list-container');
             if (!container) return;
 
             container.innerHTML = '';
             if (APP_STATE.exams.length === 0) {
-                container.innerHTML = '<p class="text-xs text-slate-400 italic">No exams recorded. Use the planner on the right to schedule tests.</p>';
+                container.innerHTML = '<p class="text-xs text-slate-400 italic font-mono">No exams recorded. Create milestones on right scheduler.</p>';
                 return;
             }
 
             APP_STATE.exams.forEach(ex => {
                 const subject = APP_STATE.subjects.find(s => s.id === ex.subjectId);
-                const subName = subject ? subject.name : 'Unlinked';
+                const subName = subject ? subject.name : 'Unassociated';
                 
                 container.innerHTML += `
                     <div class="p-3 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-darkBorder flex items-center justify-between gap-4">
@@ -1476,18 +1492,18 @@
             if (badge) badge.innerText = APP_STATE.exams.length;
         }
 
-        // Delete milestone
+        // Delete active exam milestone schedule
         function deleteExam(examId) {
             const toDelete = APP_STATE.exams.find(ex => ex.id === examId);
             if (!toDelete) return;
 
             APP_STATE.exams = APP_STATE.exams.filter(ex => ex.id !== examId);
             renderCalendar();
-            showNotification(`Deleted milestone "${toDelete.title}"`);
+            showNotification(`Milestone target "${toDelete.title}" successfully removed.`);
             triggerPersistentSave();
         }
 
-        // Exam association selector generator
+        // Generate dropdown list paths
         function renderExamsDropdowns() {
             const examSelect = document.getElementById('exam-subject-select');
             if (examSelect) {
@@ -1498,7 +1514,7 @@
             }
         }
 
-        // Add exam milestones
+        // Create new dynamic exam milestone scheduled path
         function addNewExamMilestone() {
             const subSelect = document.getElementById('exam-subject-select');
             const titleInput = document.getElementById('exam-title-input');
@@ -1506,7 +1522,7 @@
             const gradeInput = document.getElementById('exam-grade-input');
 
             if (!subSelect || !titleInput.value.trim()) {
-                showNotification('Please configure a valid title name for the milestone.', 'error');
+                showNotification('Please enter a valid title description.', 'error');
                 return;
             }
 
@@ -1529,11 +1545,11 @@
             gradeInput.value = 'A+';
 
             renderCalendar();
-            showNotification('New exam milestone mapped successfully!', 'success');
+            showNotification('Exam milestone scheduled successfully!', 'success');
             triggerPersistentSave();
         }
 
-        // Populate Pomodoro focus tracker list selection
+        // Stopwatch dropdown associations renderer
         function renderTimerSubjects() {
             const select = document.getElementById('timer-subject-select');
             if (!select) return;
@@ -1544,103 +1560,140 @@
             });
         }
 
-        // Update active timer preset countdown limit
-        function setTimerDuration(mins) {
-            clearInterval(timerInterval);
-            isTimerRunning = false;
-            timerMinutesLeft = mins;
-            timerSecondsLeft = 0;
-            document.getElementById('timer-start-btn').innerHTML = `<i class="fa-solid fa-play"></i> Start`;
-            document.getElementById('timer-status-desc').innerText = `Configured for ${mins} minute focus session`;
-            updateTimerDisplay();
+        // STOPWATCH SYSTEM CONTROLLERS (COUNT-UP TRACKER MODULE)
+        function toggleStopwatch() {
+            const toggleBtn = document.getElementById('stopwatch-toggle-btn');
+            const saveBtn = document.getElementById('stopwatch-save-btn');
+            const pulseGlow = document.getElementById('stopwatch-pulse-glow');
+            const stopwatchStatus = document.getElementById('stopwatch-status-label');
+            const headerIndicator = document.getElementById('header-stopwatch-indicator');
+            const pingDot = document.getElementById('stopwatch-ping');
+
+            if (isStopwatchRunning) {
+                // Pause current session
+                clearInterval(stopwatchInterval);
+                isStopwatchRunning = false;
+                
+                toggleBtn.innerHTML = `<i class="fa-solid fa-play"></i> Resume Session`;
+                toggleBtn.className = "px-8 py-3.5 bg-amber-500 hover:bg-amber-600 text-slate-950 rounded-xl text-xs font-bold transition-all flex items-center gap-2";
+                
+                stopwatchStatus.innerText = "Stopwatch Paused";
+                stopwatchStatus.className = "text-[10px] uppercase font-bold text-amber-500";
+                
+                pulseGlow.className = "absolute -bottom-12 -left-12 h-44 w-44 bg-amber-500/5 rounded-full blur-2xl pointer-events-none transition-all duration-300";
+                pingDot.classList.add('hidden');
+                
+                showNotification("Live Study Stopwatch paused. Click 'End & Save Hours' to commit this session.");
+            } else {
+                // Initialize audio context for background sounds
+                initAudioContext();
+                
+                isStopwatchRunning = true;
+                saveBtn.classList.remove('hidden'); // Show save trigger button
+                headerIndicator.classList.remove('hidden'); // Show small glowing tracker on workspace header
+                
+                toggleBtn.innerHTML = `<i class="fa-solid fa-pause"></i> Pause Session`;
+                toggleBtn.className = "px-8 py-3.5 bg-rose-500 hover:bg-rose-600 text-white rounded-xl text-xs font-bold transition-all flex items-center gap-2";
+                
+                stopwatchStatus.innerText = "Tracking Live Study Hours...";
+                stopwatchStatus.className = "text-[10px] uppercase font-bold text-emerald-400";
+                
+                pulseGlow.className = "absolute -bottom-12 -left-12 h-44 w-44 bg-emerald-500/10 rounded-full blur-2xl pointer-events-none transition-all duration-300";
+                pingDot.classList.remove('hidden');
+
+                stopwatchInterval = setInterval(() => {
+                    stopwatchSeconds++;
+                    updateStopwatchDisplay();
+                }, 1000);
+
+                showNotification("Live Stopwatch successfully start kora hoyeche! tracking hours...", "success");
+            }
         }
 
-        // Set custom minutes countdown limits
-        function setCustomTimerDuration() {
-            const customInput = document.getElementById('custom-timer-input');
-            if (!customInput) return;
-            const value = parseInt(customInput.value);
-            if (isNaN(value) || value < 1 || value > 180) {
-                showNotification("Please set a focus duration between 1 and 180 minutes.", "error");
+        // Render Stopwatch counter representation
+        function updateStopwatchDisplay() {
+            const hrs = Math.floor(stopwatchSeconds / 3600);
+            const mins = Math.floor((stopwatchSeconds % 3600) / 60);
+            const secs = stopwatchSeconds % 60;
+
+            const displayStr = `${hrs.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+            
+            document.getElementById('stopwatch-display').innerText = displayStr;
+            document.getElementById('header-stopwatch-time').innerText = displayStr;
+            document.getElementById('stopwatch-subtext').innerText = `Active Study: ${hrs} hours, ${mins} minutes, and ${secs} seconds accumulated`;
+        }
+
+        // Save session and reset stopwatch metrics
+        function saveAndResetStopwatch() {
+            if (stopwatchSeconds === 0) {
+                showNotification("Stopwatch-e kono time accumulate hoyni save korar jonno.", "error");
                 return;
             }
-            setTimerDuration(value);
-            showNotification(`Timer updated successfully to ${value} minutes.`, "success");
-        }
 
-        // Countdown visual printer
-        function updateTimerDisplay() {
-            const minsStr = timerMinutesLeft.toString().padStart(2, '0');
-            const secsStr = timerSecondsLeft.toString().padStart(2, '0');
-            document.getElementById('timer-display').innerText = `${minsStr}:${secsStr}`;
-        }
-
-        // Run/Stop countdown actions
-        function toggleTimer() {
-            if (isTimerRunning) {
-                clearInterval(timerInterval);
-                isTimerRunning = false;
-                document.getElementById('timer-start-btn').innerHTML = `<i class="fa-solid fa-play"></i> Start`;
-                document.getElementById('timer-status-desc').innerText = 'Focus timer paused';
-            } else {
-                isTimerRunning = true;
-                document.getElementById('timer-start-btn').innerHTML = `<i class="fa-solid fa-pause"></i> Pause`;
-                document.getElementById('timer-status-desc').innerText = 'Actively counting focus flow...';
-                timerInterval = setInterval(() => {
-                    if (timerSecondsLeft === 0) {
-                        if (timerMinutesLeft === 0) {
-                            clearInterval(timerInterval);
-                            isTimerRunning = false;
-                            document.getElementById('timer-start-btn').innerHTML = `<i class="fa-solid fa-play"></i> Start`;
-                            document.getElementById('timer-status-desc').innerText = 'Focus session finished!';
-                            handleTimerCompleted();
-                            return;
-                        } else {
-                            timerMinutesLeft--;
-                            timerSecondsLeft = 59;
-                        }
-                    } else {
-                        timerSecondsLeft--;
-                    }
-                    updateTimerDisplay();
-                }, 1000);
-            }
-        }
-
-        // Reset timer configuration values
-        function resetTimer() {
-            clearInterval(timerInterval);
-            isTimerRunning = false;
-            timerMinutesLeft = 25;
-            timerSecondsLeft = 0;
-            document.getElementById('timer-start-btn').innerHTML = `<i class="fa-solid fa-play"></i> Start`;
-            document.getElementById('timer-status-desc').innerText = 'Ready to focus';
-            updateTimerDisplay();
-        }
-
-        // Focus period achievement trigger logger
-        function handleTimerCompleted() {
-            showNotification('Congratulations! Completed concentration block.', 'success');
-            
+            // Calculate precise decimal study hours
+            const sessionHours = parseFloat((stopwatchSeconds / 3600).toFixed(4));
             const select = document.getElementById('timer-subject-select');
-            if (select && select.value) {
-                const sub = APP_STATE.subjects.find(s => s.id === select.value);
-                if (sub) {
-                    sub.completedHours = parseFloat((sub.completedHours + 0.5).toFixed(1));
-                    renderDashboardMetrics();
-                    triggerPersistentSave();
-                }
+            
+            if (!select || !select.value) {
+                showNotification("Target tracking subject track select korun list theke.", "error");
+                return;
+            }
+
+            const subjectId = select.value;
+            const targetSubject = APP_STATE.subjects.find(s => s.id === subjectId);
+            
+            if (targetSubject) {
+                targetSubject.completedHours = parseFloat((targetSubject.completedHours + sessionHours).toFixed(4));
+                
+                const formatMins = Math.round((stopwatchSeconds % 3600) / 60);
+                const formatHrs = Math.floor(stopwatchSeconds / 3600);
+                
+                showNotification(`Successfully saved! ${formatHrs}h ${formatMins}m runtime added to "${targetSubject.name}".`, "success");
+                
+                // Reset Stopwatch
+                resetStopwatch();
+                
+                // Sync dashboards and charts realtime
+                renderDashboardMetrics();
+                initCharts();
+                triggerPersistentSave();
             }
         }
 
-        // Web Audio Synthesizer init
+        // Reset Stopwatch to initial states
+        function resetStopwatch() {
+            clearInterval(stopwatchInterval);
+            isStopwatchRunning = false;
+            stopwatchSeconds = 0;
+
+            document.getElementById('stopwatch-display').innerText = "00:00:00";
+            document.getElementById('header-stopwatch-time').innerText = "00:00:00";
+            document.getElementById('stopwatch-subtext').innerText = 'Click "Start Session" to begin charting study hours from zero';
+            
+            const toggleBtn = document.getElementById('stopwatch-toggle-btn');
+            toggleBtn.innerHTML = `<i class="fa-solid fa-play"></i> Start Session`;
+            toggleBtn.className = "px-8 py-3.5 bg-emerald-500 hover:bg-emerald-600 text-slate-950 rounded-xl text-xs font-bold transition-all shadow-md shadow-emerald-500/20 flex items-center gap-2";
+            
+            const stopwatchStatus = document.getElementById('stopwatch-status-label');
+            stopwatchStatus.innerText = "Stopwatch Standby";
+            stopwatchStatus.className = "text-[10px] uppercase font-bold text-slate-400";
+            
+            document.getElementById('stopwatch-save-btn').classList.add('hidden');
+            document.getElementById('header-stopwatch-indicator').classList.add('hidden');
+            document.getElementById('stopwatch-ping').classList.add('hidden');
+            
+            const pulseGlow = document.getElementById('stopwatch-pulse-glow');
+            pulseGlow.className = "absolute -bottom-12 -left-12 h-44 w-44 bg-emerald-500/5 rounded-full blur-2xl pointer-events-none transition-all duration-300";
+        }
+
+        // Web Audio Synthesizer sound generator
         function initAudioContext() {
             if (!audioCtx) {
                 audioCtx = new (window.AudioContext || window.webkitAudioContext)();
             }
         }
 
-        // Synthesizer switch action logic
+        // Toggle synthesized ambient noise modes
         function toggleAmbientSynth(type) {
             initAudioContext();
 
@@ -1713,10 +1766,10 @@
                 synthOscillator = noiseNode;
             }
 
-            showNotification(`Started synthesizing deep concentration soundscapes.`, 'success');
+            showNotification(`Background Study tones initialized.`, 'success');
         }
 
-        // Shut down oscillator
+        // Shut down synth audio nodes
         function stopAmbientSynth() {
             if (!activeSynthType) return;
 
@@ -1741,7 +1794,7 @@
             }
         }
 
-        // Adjust real-time volume gain
+        // Adjust real-time volume parameters
         function adjustSynthVolume(val) {
             synthVolumeLevel = val / 100;
             document.getElementById('synth-vol-label').innerText = `${val}%`;
@@ -1750,38 +1803,42 @@
             }
         }
 
-        // Dynamic Study Analytics display list
+        // Render detailed Performance lists
         function renderAnalyticsView() {
             const list = document.getElementById('analytics-mastery-list');
             if (!list) return;
 
             list.innerHTML = '';
             if (APP_STATE.subjects.length === 0) {
-                list.innerHTML = '<p class="text-xs text-slate-400 italic">No subject tracking tracks logged.</p>';
+                list.innerHTML = '<p class="text-xs text-slate-400 italic">No subject courses configured yet.</p>';
                 return;
             }
 
             APP_STATE.subjects.forEach(s => {
+                const floorH = Math.floor(s.completedHours);
+                const remainingM = Math.round((s.completedHours - floorH) * 60);
+                
                 list.innerHTML += `
                     <div class="flex items-center justify-between p-3.5 bg-slate-50 dark:bg-slate-800/40 border border-slate-100 dark:border-darkBorder rounded-xl">
                         <div class="flex items-center gap-2.5">
                             <div class="h-2.5 w-2.5 rounded-full" style="background-color: ${s.color}"></div>
                             <span class="font-bold dark:text-white">${s.name}</span>
                         </div>
-                        <span class="font-extrabold text-sm text-indigo-500 dark:text-indigo-400">Mastery Grade: ${s.grade}</span>
+                        <span class="font-extrabold text-xs text-slate-500 dark:text-slate-300">${floorH}h ${remainingM}m | Grade ${s.grade}</span>
                     </div>
                 `;
             });
         }
 
-        // Chart.js renderer configurations
+        // Initialize and draw Chart.js visualizations
         function initCharts() {
             const isDark = document.documentElement.classList.contains('dark');
-            const gridColor = isDark ? '#1f2937' : '#ede9fe';
+            const gridColor = isDark ? '#1e293b' : '#f1f5f9';
             const textColor = isDark ? '#94a3b8' : '#64748b';
 
+            // Chart label values mappings from app states
             const subjectNames = APP_STATE.subjects.map(s => s.name);
-            const loggedHours = APP_STATE.subjects.map(s => s.completedHours);
+            const loggedHours = APP_STATE.subjects.map(s => parseFloat(s.completedHours.toFixed(2)));
             const targetHours = APP_STATE.subjects.map(s => s.targetHours);
             const subjectColors = APP_STATE.subjects.map(s => s.color);
             const progressRates = APP_STATE.subjects.map(s => {
@@ -1790,35 +1847,58 @@
                 return totalCh > 0 ? Math.round((compCh / totalCh) * 100) : 0;
             });
 
-            const dashCanvas = document.getElementById('dashWeeklyChart');
-            if (dashCanvas) {
-                if (dashWeeklyChartInstance) dashWeeklyChartInstance.destroy();
-                dashWeeklyChartInstance = new Chart(dashCanvas, {
-                    type: 'line',
+            // 1. DYNAMIC PREMIUM SUBJECT-WISE STUDY TIME PIE/DOUGHNUT CHART (REQUESTED RE-DESIGN)
+            const pieCanvas = document.getElementById('dashSubjectPieChart');
+            if (pieCanvas) {
+                if (dashSubjectPieChartInstance) dashSubjectPieChartInstance.destroy();
+                
+                // Fallback label variables if no sessions recorded yet
+                const finalHoursData = loggedHours.some(val => val > 0) ? loggedHours : [1, 1, 1];
+                const finalLabels = loggedHours.some(val => val > 0) ? subjectNames : ["No study hours logged yet"];
+                const finalColors = loggedHours.some(val => val > 0) ? subjectColors : ['#475569'];
+
+                dashSubjectPieChartInstance = new Chart(pieCanvas, {
+                    type: 'doughnut',
                     data: {
-                        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                        labels: finalLabels,
                         datasets: [{
-                            label: 'Focus Minutes Completed',
-                            data: [50, 75, 45, 120, 90, 160, 110],
-                            borderColor: '#8b5cf6',
-                            backgroundColor: 'rgba(139, 92, 246, 0.05)',
-                            fill: true,
-                            tension: 0.4,
-                            borderWidth: 3
+                            data: finalHoursData,
+                            backgroundColor: finalColors,
+                            borderColor: isDark ? '#0f172a' : '#ffffff',
+                            borderWidth: 3,
+                            hoverOffset: 12
                         }]
                     },
                     options: {
                         responsive: true,
                         maintainAspectRatio: false,
-                        plugins: { legend: { display: false } },
-                        scales: {
-                            x: { grid: { color: gridColor }, ticks: { color: textColor } },
-                            y: { grid: { color: gridColor }, ticks: { color: textColor } }
+                        cutout: '65%',
+                        plugins: {
+                            legend: {
+                                display: true,
+                                position: 'right',
+                                labels: {
+                                    color: textColor,
+                                    font: { family: 'Inter', size: 11, weight: 'semibold' },
+                                    padding: 15
+                                }
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        const rawValue = context.raw;
+                                        const floorH = Math.floor(rawValue);
+                                        const remainingM = Math.round((rawValue - floorH) * 60);
+                                        return ` Study Log: ${floorH} hours, ${remainingM} minutes`;
+                                    }
+                                }
+                            }
                         }
                     }
                 });
             }
 
+            // 2. Bar Chart comparison of Target versus Logged Study Times
             const distCanvas = document.getElementById('analyticsDistributionChart');
             if (distCanvas) {
                 if (analyticsDistributionChartInstance) analyticsDistributionChartInstance.destroy();
@@ -1828,16 +1908,16 @@
                         labels: subjectNames,
                         datasets: [
                             {
-                                label: 'Logged Study Volume',
+                                label: 'Logged Hours',
                                 data: loggedHours,
                                 backgroundColor: subjectColors,
-                                borderRadius: 8
+                                borderRadius: 6
                             },
                             {
-                                label: 'Goal Study Volume',
+                                label: 'Target Limit Hours',
                                 data: targetHours,
-                                backgroundColor: 'rgba(148, 163, 184, 0.1)',
-                                borderRadius: 8
+                                backgroundColor: 'rgba(148, 163, 184, 0.12)',
+                                borderRadius: 6
                             }
                         ]
                     },
@@ -1853,6 +1933,7 @@
                 });
             }
 
+            // 3. Analytics completion progress rates visualization bar
             const trendCanvas = document.getElementById('analyticsTrendChart');
             if (trendCanvas) {
                 if (analyticsTrendChartInstance) analyticsTrendChartInstance.destroy();
@@ -1864,7 +1945,7 @@
                             label: 'Progress (%)',
                             data: progressRates,
                             backgroundColor: subjectColors,
-                            borderRadius: 8,
+                            borderRadius: 6,
                             maxBarThickness: 45
                         }]
                     },
@@ -1881,7 +1962,7 @@
             }
         }
 
-        // Modal displays toggler
+        // Modal triggers toggler
         function openAddSubjectModal() {
             document.getElementById('add-subject-modal').classList.remove('hidden');
             selectModalColor('#6366f1', 'indigo'); 
@@ -1902,14 +1983,14 @@
             document.getElementById(`color-check-${name}`).classList.remove('hidden');
         }
 
-        // Store new subject parameters
+        // Submit and store new custom subjects
         function submitNewSubject() {
             const name = document.getElementById('add-subject-name').value.trim();
             const hours = parseFloat(document.getElementById('add-subject-hours').value) || 60;
             const grade = document.getElementById('add-subject-grade').value.trim().toUpperCase() || 'A';
 
             if (!name) {
-                showNotification('Subject Name cannot be left blank.', 'error');
+                showNotification('Subject Name empty rakha jabe na.', 'error');
                 return;
             }
 
@@ -1934,16 +2015,17 @@
 
             closeAddSubjectModal();
             renderDashboardMetrics();
-            showNotification(`Subject track "${name}" created successfully!`, 'success');
+            initCharts();
+            showNotification(`Subject Track "${name}" successfully add kora hoyeche!`, 'success');
             triggerPersistentSave();
         }
 
-        // Save display name parameters
+        // Save preferences name configuration
         function saveWorkspaceSettings() {
             const nameVal = document.getElementById('settings-name-input').value.trim();
             if (nameVal) {
                 document.getElementById('header-user-name').innerText = nameVal;
-                showNotification('Scholar name settings updated successfully.', 'success');
+                showNotification('Preferences successfully update kora hoyeche.', 'success');
                 triggerPersistentSave();
             }
         }
