@@ -43,9 +43,9 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            overflow: hidden; /* Prevent native scrollbars for application feel */
+            overflow: hidden; /* Prevent native scrollbars for premium application feel */
         }
-        /* Custom Premium Scrollbar for overflow views */
+        /* Custom Scrollbars */
         ::-webkit-scrollbar {
             width: 8px;
             height: 8px;
@@ -73,13 +73,13 @@
 </head>
 <body class="bg-slate-50 dark:bg-darkBg text-slate-800 dark:text-slate-100 h-screen w-screen flex flex-row transition-colors duration-300 overflow-hidden">
 
-    <!-- Notification Toast -->
+    <!-- Toast Notification Overlay -->
     <div id="toast-container" class="fixed top-6 right-6 z-50 pointer-events-none space-y-3"></div>
 
-    <!-- PERMANENT DESKTOP LEFT SIDEBAR -->
+    <!-- LEFT SIDEBAR -->
     <aside class="w-72 border-r border-slate-200 dark:border-darkBorder bg-white dark:bg-darkSurface flex flex-col justify-between flex-shrink-0 h-full select-none">
         
-        <!-- Sidebar Header (Brand Logo) -->
+        <!-- Brand Logo Header -->
         <div class="p-6 border-b border-slate-100 dark:border-darkBorder">
             <div class="flex items-center gap-3">
                 <div class="h-10 w-10 bg-gradient-to-tr from-brand-500 to-indigo-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-brand-500/20">
@@ -92,7 +92,7 @@
             </div>
         </div>
 
-        <!-- Navigation Menu links -->
+        <!-- Sidebar Navigation Menu Links -->
         <nav id="sidebar-nav" class="flex-grow flex flex-col gap-1.5 p-4 overflow-y-auto">
             <span class="px-3 text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-2 block">Core Hub</span>
             
@@ -137,7 +137,7 @@
             </a>
         </nav>
 
-        <!-- Sidebar Footer: Desktop Shortcuts Indicator -->
+        <!-- Desktop Shortcuts Indicator -->
         <div class="p-4 m-4 bg-slate-50 dark:bg-slate-800/30 rounded-xl border border-slate-100 dark:border-darkBorder text-xs text-slate-400">
             <span class="font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest text-[9px] block mb-1">Desktop Hotkeys</span>
             <div class="grid grid-cols-2 gap-y-1 text-[10px]">
@@ -149,10 +149,10 @@
         </div>
     </aside>
 
-    <!-- MAIN APP WRAPPER -->
+    <!-- RIGHT MAIN WRAPPER -->
     <div class="flex-grow flex flex-col h-full overflow-hidden">
         
-        <!-- HEADER / NAVBAR (WITHOUT MOBILE TOGGLE OR HAMBURGER) -->
+        <!-- HEADER TOP BAR -->
         <header class="border-b border-slate-200 dark:border-darkBorder bg-white dark:bg-darkSurface px-8 py-4 flex items-center justify-between select-none">
             <div>
                 <h1 class="text-xl font-extrabold tracking-tight dark:text-white" id="header-title">Workspace Hub Overview</h1>
@@ -165,7 +165,7 @@
                     <i id="theme-icon" class="fa-solid fa-sun text-base"></i>
                 </button>
                 <div class="h-8 w-[1px] bg-slate-200 dark:bg-darkBorder"></div>
-                <!-- User Profile badge -->
+                <!-- Profile badge -->
                 <div class="flex items-center gap-3">
                     <div class="h-9 w-9 rounded-full bg-indigo-500/10 text-indigo-500 flex items-center justify-center font-bold text-xs border border-indigo-500/30">
                         SS
@@ -178,7 +178,7 @@
             </div>
         </header>
 
-        <!-- VIEW CONTAINER: CONTENT AREA -->
+        <!-- MAIN VIEW PORT -->
         <main class="flex-grow p-8 overflow-y-auto bg-slate-50/50 dark:bg-darkBg/30 h-full max-h-[calc(100vh-73px)]">
 
             <!-- 1. HUB DASHBOARD VIEW -->
@@ -193,8 +193,8 @@
                     </button>
                 </div>
 
-                <!-- Core Stats Cards Row -->
-                <div class="grid grid-cols-4 gap-6">
+                <!-- Stats Dashboard Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     <div class="bg-white dark:bg-darkSurface border border-slate-200 dark:border-darkBorder p-5 rounded-2xl shadow-premium dark:shadow-premium-dark flex items-center justify-between">
                         <div>
                             <span class="text-[10px] text-slate-400 font-extrabold uppercase tracking-wider block">Total Progress Rate</span>
@@ -202,7 +202,7 @@
                             <p class="text-[10px] text-emerald-500 font-bold mt-1.5"><i class="fa-solid fa-chart-line mr-1"></i>+4.2% this week</p>
                         </div>
                         <div class="h-12 w-12 bg-indigo-500/10 text-indigo-500 rounded-xl flex items-center justify-center text-lg">
-                            <i class="fa-solid fa-spinner"></i>
+                            <i class="fa-solid fa-spinner animate-spin"></i>
                         </div>
                     </div>
 
@@ -240,9 +240,9 @@
                     </div>
                 </div>
 
-                <!-- Middle Charts & Calendar Section -->
-                <div class="grid grid-cols-3 gap-6">
-                    <div class="col-span-2 bg-white dark:bg-darkSurface border border-slate-200 dark:border-darkBorder p-6 rounded-2xl shadow-premium dark:shadow-premium-dark">
+                <!-- Chart Analysis & Mini Milestones Section -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div class="col-span-1 lg:col-span-2 bg-white dark:bg-darkSurface border border-slate-200 dark:border-darkBorder p-6 rounded-2xl shadow-premium dark:shadow-premium-dark">
                         <div class="flex items-center justify-between mb-4">
                             <div>
                                 <h3 class="font-bold text-base dark:text-white">Active Weekly Flow</h3>
@@ -262,7 +262,7 @@
                                 <button onclick="switchView('calendar')" class="text-xs font-semibold text-brand-500 hover:underline">View Calendar</button>
                             </div>
                             <div class="space-y-3" id="dash-upcoming-exams-list">
-                                <!-- Render dynamically -->
+                                <!-- Rendered dynamically -->
                             </div>
                         </div>
                         <div class="mt-4 pt-4 border-t border-slate-100 dark:border-darkBorder">
@@ -273,19 +273,19 @@
                     </div>
                 </div>
 
-                <!-- Trackers & Subjects Grid Section -->
+                <!-- Subject Mastery Track Cards -->
                 <div class="space-y-4">
                     <div class="flex items-center justify-between">
                         <h3 class="font-extrabold text-lg dark:text-white">Subject Mastery</h3>
                         <button onclick="openAddSubjectModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 dark:bg-darkBorder dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 rounded-xl text-xs font-bold transition-all"><i class="fa-solid fa-plus mr-1.5"></i>Add Subject</button>
                     </div>
-                    <div id="dashboard-subjects-container" class="grid grid-cols-3 gap-6">
-                        <!-- Dynamic subject cards render -->
+                    <div id="dashboard-subjects-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Dynamically filled on load -->
                     </div>
                 </div>
             </div>
 
-            <!-- 2. AP PHYSICS SUBJECT OVERVIEW DETAIL VIEW (DYNAMIC SYLLABUS TRACKER) -->
+            <!-- 2. SUBJECT DETAIL VIEW (SYLLABUS TRACKER) -->
             <div id="view-physics-overview" class="view-panel space-y-8 hidden">
                 <div class="flex items-center justify-between border-b border-slate-200 dark:border-darkBorder pb-5">
                     <div>
@@ -301,7 +301,7 @@
                     </div>
                 </div>
 
-                <div class="grid grid-cols-3 gap-6">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                     <!-- Progress Card -->
                     <div id="physics-progress-card-bg" class="bg-gradient-to-br from-indigo-950 to-slate-900 p-6 rounded-2xl text-white border border-indigo-500/30 flex flex-col justify-between shadow-xl">
                         <div>
@@ -323,7 +323,7 @@
                         </div>
                     </div>
 
-                    <!-- Formulas Cheat Card -->
+                    <!-- Formulas Card -->
                     <div class="bg-white dark:bg-darkSurface border border-slate-200 dark:border-darkBorder p-6 rounded-2xl shadow-premium dark:shadow-premium-dark">
                         <h3 class="font-bold text-base dark:text-white mb-4"><i class="fa-solid fa-microscope text-indigo-500 mr-2" id="sandbox-icon-accent"></i>Formulas & Cheat Sandbox</h3>
                         <div class="space-y-3 text-xs overflow-y-auto max-h-48 pr-1">
@@ -342,12 +342,12 @@
                         </div>
                     </div>
 
-                    <!-- Study Log Tracker -->
+                    <!-- Study Tracker notes -->
                     <div class="bg-white dark:bg-darkSurface border border-slate-200 dark:border-darkBorder p-6 rounded-2xl shadow-premium dark:shadow-premium-dark flex flex-col justify-between">
                         <div>
                             <h3 class="font-bold text-base dark:text-white mb-3">Study Tracker Log</h3>
                             <div class="space-y-3 text-xs max-h-36 overflow-y-auto pr-1" id="physics-notes-list">
-                                <!-- Dynamic notes will populate here -->
+                                <!-- Populated dynamically -->
                             </div>
                         </div>
                         <div class="mt-4 flex gap-2">
@@ -357,10 +357,10 @@
                     </div>
                 </div>
 
-                <!-- Interactive Syllabus Checklist progression with Dynamic "Add Chapter" Feature -->
-                <div class="grid grid-cols-3 gap-6">
-                    <!-- Chapters List -->
-                    <div class="col-span-2 bg-white dark:bg-darkSurface border border-slate-200 dark:border-darkBorder p-6 rounded-2xl shadow-premium dark:shadow-premium-dark flex flex-col justify-between">
+                <!-- Interactive Syllabus Checklist and Chapter addition -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <!-- Chapters checklist selection -->
+                    <div class="lg:col-span-2 bg-white dark:bg-darkSurface border border-slate-200 dark:border-darkBorder p-6 rounded-2xl shadow-premium dark:shadow-premium-dark flex flex-col justify-between">
                         <div>
                             <div class="flex items-center justify-between mb-6">
                                 <div>
@@ -370,12 +370,12 @@
                                 <span class="text-xs font-bold text-indigo-500" id="syllabus-standard-badge">AP Syllabus Standard</span>
                             </div>
                             <div class="divide-y divide-slate-100 dark:divide-darkBorder max-h-[22rem] overflow-y-auto pr-1" id="physics-chapters-list">
-                                <!-- Render chapters dynamically -->
+                                <!-- Populated dynamically -->
                             </div>
                         </div>
                     </div>
 
-                    <!-- Dynamic "Add Chapter" Controller Form -->
+                    <!-- Chapter additions form -->
                     <div class="bg-white dark:bg-darkSurface border border-slate-200 dark:border-darkBorder p-6 rounded-2xl shadow-premium dark:shadow-premium-dark flex flex-col justify-between">
                         <div>
                             <h3 class="font-bold text-base dark:text-white mb-2">
@@ -412,9 +412,9 @@
                     </div>
                 </div>
 
-                <div class="grid grid-cols-3 gap-6">
-                    <!-- Calendar Grid Wrapper -->
-                    <div class="col-span-2 bg-white dark:bg-darkSurface border border-slate-200 dark:border-darkBorder p-6 rounded-2xl shadow-premium dark:shadow-premium-dark">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <!-- Calendar View Panel -->
+                    <div class="lg:col-span-2 bg-white dark:bg-darkSurface border border-slate-200 dark:border-darkBorder p-6 rounded-2xl shadow-premium dark:shadow-premium-dark">
                         <div class="flex items-center justify-between mb-6">
                             <h3 class="font-extrabold text-lg dark:text-white" id="calendar-month-year-label">June 2026</h3>
                             <div class="flex gap-2">
@@ -428,11 +428,11 @@
                         </div>
 
                         <div id="calendar-days-grid" class="grid grid-cols-7 gap-2 text-xs">
-                            <!-- Populated dynamically via JS -->
+                            <!-- Populated dynamically -->
                         </div>
                     </div>
 
-                    <!-- Sidebar: Manage Exam Lists / Create New Exam -->
+                    <!-- Sidebar Scheduler -->
                     <div class="space-y-6">
                         <div class="bg-white dark:bg-darkSurface border border-slate-200 dark:border-darkBorder p-6 rounded-2xl shadow-premium dark:shadow-premium-dark">
                             <h3 class="font-bold text-base dark:text-white mb-4"><i class="fa-solid fa-calendar-plus text-rose-500 mr-2"></i>Add Exam Milestone</h3>
@@ -441,7 +441,7 @@
                                 <div>
                                     <label class="block font-bold text-slate-400 mb-1">Subject Association</label>
                                     <select id="exam-subject-select" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-darkBorder rounded-xl px-3 py-2.5 focus:outline-none focus:border-brand-500 text-slate-800 dark:text-white font-medium">
-                                        <!-- Dynamic subject options populated via Javascript -->
+                                        <!-- Populated dynamically -->
                                     </select>
                                 </div>
                                 <div>
@@ -462,6 +462,7 @@
                             </div>
                         </div>
 
+                        <!-- Milestone list log -->
                         <div class="bg-white dark:bg-darkSurface border border-slate-200 dark:border-darkBorder p-6 rounded-2xl shadow-premium dark:shadow-premium-dark flex-grow">
                             <h3 class="font-bold text-base dark:text-white mb-4">Milestone Quick Log</h3>
                             <div class="space-y-3 text-xs max-h-56 overflow-y-auto pr-1" id="calendar-exams-list-container">
@@ -481,9 +482,9 @@
                     </div>
                 </div>
 
-                <div class="grid grid-cols-3 gap-6">
-                    <!-- Dynamic timer control widget -->
-                    <div class="col-span-2 bg-gradient-to-br from-slate-900 to-indigo-950 text-white p-8 rounded-2xl border border-indigo-500/20 shadow-xl flex flex-col justify-between relative overflow-hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <!-- Timer view slider -->
+                    <div class="lg:col-span-2 bg-gradient-to-br from-slate-900 to-indigo-950 text-white p-8 rounded-2xl border border-indigo-500/20 shadow-xl flex flex-col justify-between relative overflow-hidden">
                         <div class="absolute -top-12 -right-12 h-44 w-44 bg-brand-500/20 rounded-full blur-2xl pointer-events-none"></div>
                         <div class="absolute -bottom-12 -left-12 h-44 w-44 bg-indigo-500/10 rounded-full blur-2xl pointer-events-none"></div>
 
@@ -509,7 +510,7 @@
                                 <button onclick="setTimerDuration(15)" class="px-3.5 py-1.5 bg-indigo-500/10 hover:bg-indigo-500/20 text-indigo-300 text-[10px] font-bold rounded-lg transition-all">15m Long Break</button>
                             </div>
 
-                            <!-- ADVANCED "TIME I COULD BE SET" SECTOR -->
+                            <!-- Custom minutes application -->
                             <div class="flex justify-center items-center gap-3 pt-4 border-t border-indigo-500/15">
                                 <span class="text-xs text-indigo-300 font-bold">Custom Timer Set:</span>
                                 <input type="number" id="custom-timer-input" min="1" max="180" value="25" class="w-16 px-2.5 py-1.5 bg-slate-800 border border-indigo-500/30 text-white rounded-lg text-xs font-bold focus:outline-none focus:border-indigo-500 text-center">
@@ -518,7 +519,7 @@
                         </div>
                     </div>
 
-                    <!-- Ambient synthesizer soundscapes panel -->
+                    <!-- Audio Ambient Synthesizer system -->
                     <div class="bg-white dark:bg-darkSurface border border-slate-200 dark:border-darkBorder p-6 rounded-2xl shadow-premium dark:shadow-premium-dark flex flex-col justify-between">
                         <div class="space-y-4">
                             <div>
@@ -571,8 +572,8 @@
                     </div>
                 </div>
 
-                <div class="grid grid-cols-3 gap-6">
-                    <div class="col-span-2 bg-white dark:bg-darkSurface border border-slate-200 dark:border-darkBorder p-6 rounded-2xl shadow-premium dark:shadow-premium-dark">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div class="lg:col-span-2 bg-white dark:bg-darkSurface border border-slate-200 dark:border-darkBorder p-6 rounded-2xl shadow-premium dark:shadow-premium-dark">
                         <h3 class="font-bold text-base dark:text-white mb-2">Syllabus Hours Logged</h3>
                         <p class="text-xs text-slate-400 mb-4">Total volume of study hour checkpoints configured across active subjects</p>
                         <div class="relative h-64">
@@ -591,7 +592,7 @@
                         </div>
 
                         <div class="mt-6 pt-4 border-t border-slate-100 dark:border-darkBorder text-xs text-slate-400 flex items-center justify-between">
-                            <span>Evaluated on 2026/06/14</span>
+                            <span>Evaluated on 2026/06/15</span>
                             <span class="font-bold text-indigo-500">Stitch AI Auditor</span>
                         </div>
                     </div>
@@ -606,7 +607,7 @@
                 </div>
             </div>
 
-            <!-- 6. SETTINGS VIEW -->
+            <!-- 6. PREFERENCES / SETTINGS VIEW -->
             <div id="view-settings" class="view-panel space-y-8 hidden">
                 <div class="flex items-center justify-between border-b border-slate-200 dark:border-darkBorder pb-5">
                     <div>
@@ -646,7 +647,7 @@
         </main>
     </div>
 
-    <!-- MODAL POPUP: ADD NEW SUBJECT TRACKER -->
+    <!-- MODAL POPUP: CREATE SUBJECT TRACK -->
     <div id="add-subject-modal" class="fixed inset-0 z-50 overflow-y-auto hidden">
         <div class="fixed inset-0 bg-slate-950/60 dark:bg-slate-950/80 backdrop-blur-xs transition-opacity" onclick="closeAddSubjectModal()"></div>
         
@@ -710,13 +711,13 @@
     </div>
 
 
-    <!-- FIREBASE AND INTEGRATED PERSISTENCE MODULES -->
+    <!-- CLOUD FIREBASE SYNC INTEGRATION MODULE -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        // Fallback Local Persistence Loader
+        // Local Storage Pipeline Loader
         function loadLocalState() {
             const saved = localStorage.getItem('stitch_studytrack_state');
             if (saved) {
@@ -724,7 +725,7 @@
                     const parsed = JSON.parse(saved);
                     Object.assign(APP_STATE, parsed);
                 } catch(e) {
-                    console.log("Local state fallback parsing warning.");
+                    console.log("Local state fallback exception handled safely.");
                 }
             }
             window.saveStateToCloud = () => {
@@ -732,11 +733,10 @@
             };
         }
 
-        // Main Connection Synchronizer
+        // Firebase Auth & Sync Engine (RULE 3)
         async function initSyncEngine() {
-            // Check if Firebase dynamic config is provided by parent environment wrapper
             if (typeof __firebase_config === 'undefined' || !__firebase_config) {
-                console.log("Widescreen Live: Firebase config undefined. Activating fallback local storage pipeline.");
+                console.log("Firebase config undefined. Initializing Local Storage fallback.");
                 loadLocalState();
                 syncRenderAndInit();
                 return;
@@ -760,19 +760,19 @@
                 const user = credential.user;
                 if (user) {
                     const userId = user.uid;
-                    // Private single-state document following RULE 1
+                    // Strict Paths configured under RULE 1
                     const stateDocRef = doc(db, 'artifacts', appId, 'users', userId, 'userData', 'dashboardState');
                     const snapshot = await getDoc(stateDocRef);
 
                     if (snapshot.exists()) {
                         const cloudData = snapshot.data();
                         Object.assign(APP_STATE, cloudData);
-                        showNotification("Sync Successful: Data loaded securely from Cloud Firestore.", "success");
+                        showNotification("Cloud Firestore Sync successful! Loaded latest stats.", "success");
                     } else {
                         await setDoc(stateDocRef, APP_STATE);
                     }
 
-                    // Expose Global Cloud Saver called on all triggers
+                    // Global Save Interface
                     window.saveStateToCloud = async () => {
                         try {
                             if (auth.currentUser) {
@@ -780,12 +780,12 @@
                                 await setDoc(ref, APP_STATE);
                             }
                         } catch (err) {
-                            console.error("Firestore Save Error: ", err);
+                            console.error("Firestore Persistent Save Error: ", err);
                         }
                     };
                 }
             } catch (err) {
-                console.warn("Sync Pipeline Initialization Interrupted, applying local storage fallback: ", err);
+                console.warn("Sync pipeline error, falling back to offline: ", err);
                 loadLocalState();
             }
 
@@ -804,14 +804,14 @@
             initCharts();
         }
 
-        // Initialize synchronization on run
         window.addEventListener('load', () => {
             initSyncEngine();
         });
     </script>
 
-    <!-- MASTER SCRIPT LOGIC -->
+    <!-- CORE SCRIPTS & ACTION CONTROLLERS -->
     <script>
+        // Default Local Model Data State
         const APP_STATE = {
             theme: 'dark',
             currentView: 'dashboard',
@@ -892,7 +892,7 @@
         let isTimerRunning = false;
 
         let calendarCurrentYear = 2026;
-        let calendarCurrentMonth = 5; 
+        let calendarCurrentMonth = 5; // June is 5 in JS Date (0-indexed)
 
         let audioCtx = null;
         let synthOscillator = null;
@@ -901,13 +901,14 @@
         let activeSynthType = null; 
         let synthVolumeLevel = 0.3; 
 
-        // Trigger persistent updates dynamically to save progress
+        // State change helper
         function triggerPersistentSave() {
             if (window.saveStateToCloud) {
                 window.saveStateToCloud();
             }
         }
 
+        // Custom Notification box
         function showNotification(message, type = 'info') {
             const container = document.getElementById('toast-container');
             if (!container) return;
@@ -935,6 +936,7 @@
             }, 3000);
         }
 
+        // Theme controller toggle
         function toggleTheme() {
             if (document.documentElement.classList.contains('dark')) {
                 document.documentElement.classList.remove('dark');
@@ -949,6 +951,7 @@
             triggerPersistentSave();
         }
 
+        // Global Page View Switcher
         function switchView(viewName) {
             APP_STATE.currentView = viewName;
             
@@ -992,7 +995,14 @@
             triggerPersistentSave();
         }
 
-        // DESKTOP HOTKEYS KEYBOARD LISTENER
+        // Detail View transition for clicked subject (FIXED BUG - Dynamic update propagation)
+        function viewSubjectTracker(subjectId) {
+            APP_STATE.activeSubjectId = subjectId;
+            renderActiveSubjectDetails();
+            switchView('physics-overview');
+        }
+
+        // Hotkeys action triggers
         window.addEventListener('keydown', function(e) {
             if (e.altKey) {
                 const key = e.key.toLowerCase();
@@ -1005,6 +1015,7 @@
             }
         });
 
+        // Dashboard overall progress compilation
         function renderDashboardMetrics() {
             let totalHoursAssigned = 0;
             let totalHoursCompleted = 0;
@@ -1038,6 +1049,7 @@
             renderTimerSubjects();
         }
 
+        // Upcoming milestone events log
         function renderUpcomingExamsList() {
             const container = document.getElementById('dash-upcoming-exams-list');
             if (!container) return;
@@ -1072,6 +1084,7 @@
             });
         }
 
+        // Subject Track Card dynamic elements (FIXED BUG: Added precise click redirects)
         function renderSubjects() {
             const container = document.getElementById('dashboard-subjects-container');
             if (!container) return;
@@ -1094,11 +1107,11 @@
                 const progress = totalChapters > 0 ? Math.round((completedChapters / totalChapters) * 100) : 0;
                 
                 const cardHTML = `
-                    <div class="bg-white dark:bg-darkSurface border border-slate-200 dark:border-darkBorder p-6 rounded-2xl shadow-premium dark:shadow-premium-dark flex flex-col justify-between hover:scale-[1.01] transition-transform duration-200">
+                    <div onclick="viewSubjectTracker('${subject.id}')" class="bg-white dark:bg-darkSurface border border-slate-200 dark:border-darkBorder p-6 rounded-2xl shadow-premium dark:shadow-premium-dark flex flex-col justify-between hover:scale-[1.01] transition-all duration-200 cursor-pointer">
                         <div>
                             <div class="flex items-center justify-between mb-4">
                                 <span class="text-[10px] font-extrabold uppercase tracking-widest text-slate-400">Mastery Grade: ${subject.grade}</span>
-                                <div class="flex items-center gap-2">
+                                <div class="flex items-center gap-2" onclick="event.stopPropagation();">
                                     <button onclick="deleteSubject('${subject.id}')" class="p-1.5 hover:bg-rose-500/10 text-slate-400 hover:text-rose-500 rounded-lg transition-all" title="Delete Subject">
                                         <i class="fa-solid fa-trash-can text-xs"></i>
                                     </button>
@@ -1120,7 +1133,7 @@
                             <div class="w-full bg-slate-100 dark:bg-slate-800 h-2 rounded-full overflow-hidden">
                                 <div class="h-full rounded-full" style="width: ${progress}%; background-color: ${subject.color}"></div>
                             </div>
-                            <button onclick="viewSubjectTracker('${subject.id}')" class="w-full py-2.5 bg-slate-50 dark:bg-slate-800/80 hover:bg-slate-100 dark:hover:bg-slate-700/60 text-slate-700 dark:text-slate-300 text-xs font-bold rounded-xl transition-all flex items-center justify-center gap-1.5 border border-slate-200/50 dark:border-darkBorder">
+                            <button onclick="event.stopPropagation(); viewSubjectTracker('${subject.id}')" class="w-full py-2.5 bg-slate-50 dark:bg-slate-800/80 hover:bg-slate-100 dark:hover:bg-slate-700/60 text-slate-700 dark:text-slate-300 text-xs font-bold rounded-xl transition-all flex items-center justify-center gap-1.5 border border-slate-200/50 dark:border-darkBorder">
                                 <i class="fa-solid fa-folder-open text-xs"></i> View Syllabus Tracker
                             </button>
                         </div>
@@ -1130,6 +1143,7 @@
             });
         }
 
+        // Delete Subject Action
         function deleteSubject(subjectId) {
             const subject = APP_STATE.subjects.find(s => s.id === subjectId);
             if (!subject) return;
@@ -1146,6 +1160,7 @@
             triggerPersistentSave();
         }
 
+        // active syllabus elements updater (FIXED BUG - dynamic elements selection)
         function renderActiveSubjectDetails() {
             const activeSub = APP_STATE.subjects.find(s => s.id === APP_STATE.activeSubjectId);
             if (!activeSub) {
@@ -1186,6 +1201,7 @@
             renderPhysicsChapters();
         }
 
+        // Notes log rendering logic
         function renderPhysicsNotes() {
             const container = document.getElementById('physics-notes-list');
             if (!container) return;
@@ -1195,7 +1211,7 @@
 
             container.innerHTML = '';
             if (!activeSub.recentNotes || activeSub.recentNotes.length === 0) {
-                container.innerHTML = '<p class="text-[11px] text-slate-400 italic">No desktop notes written yet. Insert study coordinates below.</p>';
+                container.innerHTML = '<p class="text-[11px] text-slate-400 italic">No notes written yet. Insert study coordinates below.</p>';
                 return;
             }
 
@@ -1212,6 +1228,7 @@
             });
         }
 
+        // Add note log element
         function addPhysicsNote() {
             const input = document.getElementById('physics-note-input');
             if (!input || !input.value.trim()) return;
@@ -1221,7 +1238,7 @@
 
             if (!activeSub.recentNotes) activeSub.recentNotes = [];
             activeSub.recentNotes.unshift({
-                date: 'June 14, 2026',
+                date: 'June 15, 2026',
                 text: input.value.trim()
             });
 
@@ -1231,6 +1248,7 @@
             triggerPersistentSave();
         }
 
+        // Chapter rendering elements
         function renderPhysicsChapters() {
             const container = document.getElementById('physics-chapters-list');
             if (!container) return;
@@ -1281,6 +1299,7 @@
             calculatePhysicsProgress();
         }
 
+        // Toggle checkpoint status completion
         function toggleChapterCompletion(idx) {
             const activeSub = APP_STATE.subjects.find(s => s.id === APP_STATE.activeSubjectId);
             if (activeSub && activeSub.chapters[idx]) {
@@ -1291,34 +1310,45 @@
             }
         }
 
+        // Add syllabus chapter logic (FIXED BUG: Fully structural validation & list update integration)
         function addChapterToActiveSubject() {
+            const activeSub = APP_STATE.subjects.find(s => s.id === APP_STATE.activeSubjectId);
+            if (!activeSub) {
+                showNotification('Please configure or select a study track from dashboard first.', 'error');
+                return;
+            }
+
             const titleInput = document.getElementById('chapter-title-input');
             const subtasksInput = document.getElementById('chapter-subtasks-input');
 
             if (!titleInput || !titleInput.value.trim()) {
-                showNotification('Please enter a valid chapter title.', 'error');
+                showNotification('Chapter Title cannot be left blank.', 'error');
                 return;
             }
 
-            const activeSub = APP_STATE.subjects.find(s => s.id === APP_STATE.activeSubjectId);
-            if (!activeSub) return;
-
-            if (!activeSub.chapters) activeSub.chapters = [];
+            if (!activeSub.chapters) {
+                activeSub.chapters = [];
+            }
             
-            activeSub.chapters.push({
+            const newChapter = {
                 id: `ch-${Date.now()}`,
                 title: titleInput.value.trim(),
                 completed: false,
                 subtasks: parseInt(subtasksInput.value) || 5
-            });
+            };
 
+            activeSub.chapters.push(newChapter);
+
+            // Reset input values
             titleInput.value = '';
             subtasksInput.value = '5';
+            
             renderPhysicsChapters();
-            showNotification('New syllabus chapter added!');
+            showNotification(`New chapter "${newChapter.title}" added successfully!`, 'success');
             triggerPersistentSave();
         }
 
+        // Delete syllabus chapter
         function deleteChapterFromActiveSubject(idx) {
             const activeSub = APP_STATE.subjects.find(s => s.id === APP_STATE.activeSubjectId);
             if (activeSub && activeSub.chapters) {
@@ -1330,6 +1360,7 @@
             }
         }
 
+        // Recalculate and update progression bar
         function calculatePhysicsProgress() {
             const activeSub = APP_STATE.subjects.find(s => s.id === APP_STATE.activeSubjectId);
             if (!activeSub) return;
@@ -1350,6 +1381,7 @@
             document.getElementById('subject-target-hours-desc').innerText = `Targeting ${activeSub.targetHours} hours total study flow`;
         }
 
+        // Month switcher for calendar
         function navigateCalendar(dir) {
             calendarCurrentMonth += dir;
             if (calendarCurrentMonth < 0) {
@@ -1362,6 +1394,7 @@
             renderCalendar();
         }
 
+        // Calendar dynamic grid generator
         function renderCalendar() {
             const monthLabels = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
             document.getElementById('calendar-month-year-label').innerText = `${monthLabels[calendarCurrentMonth]} ${calendarCurrentYear}`;
@@ -1410,6 +1443,7 @@
             renderExamsDropdowns();
         }
 
+        // Exam list sidebar rendering log
         function renderExams() {
             const container = document.getElementById('calendar-exams-list-container');
             if (!container) return;
@@ -1442,6 +1476,7 @@
             if (badge) badge.innerText = APP_STATE.exams.length;
         }
 
+        // Delete milestone
         function deleteExam(examId) {
             const toDelete = APP_STATE.exams.find(ex => ex.id === examId);
             if (!toDelete) return;
@@ -1452,6 +1487,7 @@
             triggerPersistentSave();
         }
 
+        // Exam association selector generator
         function renderExamsDropdowns() {
             const examSelect = document.getElementById('exam-subject-select');
             if (examSelect) {
@@ -1462,6 +1498,7 @@
             }
         }
 
+        // Add exam milestones
         function addNewExamMilestone() {
             const subSelect = document.getElementById('exam-subject-select');
             const titleInput = document.getElementById('exam-title-input');
@@ -1496,6 +1533,7 @@
             triggerPersistentSave();
         }
 
+        // Populate Pomodoro focus tracker list selection
         function renderTimerSubjects() {
             const select = document.getElementById('timer-subject-select');
             if (!select) return;
@@ -1506,6 +1544,7 @@
             });
         }
 
+        // Update active timer preset countdown limit
         function setTimerDuration(mins) {
             clearInterval(timerInterval);
             isTimerRunning = false;
@@ -1516,7 +1555,7 @@
             updateTimerDisplay();
         }
 
-        // TIME CONFIGURATION SETTER FUNCTION
+        // Set custom minutes countdown limits
         function setCustomTimerDuration() {
             const customInput = document.getElementById('custom-timer-input');
             if (!customInput) return;
@@ -1529,12 +1568,14 @@
             showNotification(`Timer updated successfully to ${value} minutes.`, "success");
         }
 
+        // Countdown visual printer
         function updateTimerDisplay() {
             const minsStr = timerMinutesLeft.toString().padStart(2, '0');
             const secsStr = timerSecondsLeft.toString().padStart(2, '0');
             document.getElementById('timer-display').innerText = `${minsStr}:${secsStr}`;
         }
 
+        // Run/Stop countdown actions
         function toggleTimer() {
             if (isTimerRunning) {
                 clearInterval(timerInterval);
@@ -1566,6 +1607,7 @@
             }
         }
 
+        // Reset timer configuration values
         function resetTimer() {
             clearInterval(timerInterval);
             isTimerRunning = false;
@@ -1576,6 +1618,7 @@
             updateTimerDisplay();
         }
 
+        // Focus period achievement trigger logger
         function handleTimerCompleted() {
             showNotification('Congratulations! Completed concentration block.', 'success');
             
@@ -1590,12 +1633,14 @@
             }
         }
 
+        // Web Audio Synthesizer init
         function initAudioContext() {
             if (!audioCtx) {
                 audioCtx = new (window.AudioContext || window.webkitAudioContext)();
             }
         }
 
+        // Synthesizer switch action logic
         function toggleAmbientSynth(type) {
             initAudioContext();
 
@@ -1619,7 +1664,6 @@
                 
                 const leftOsc = audioCtx.createOscillator();
                 const rightOsc = audioCtx.createOscillator();
-                
                 const leftChannelMerger = audioCtx.createChannelMerger(2);
 
                 leftOsc.frequency.value = baseFreq; 
@@ -1672,6 +1716,7 @@
             showNotification(`Started synthesizing deep concentration soundscapes.`, 'success');
         }
 
+        // Shut down oscillator
         function stopAmbientSynth() {
             if (!activeSynthType) return;
 
@@ -1696,6 +1741,7 @@
             }
         }
 
+        // Adjust real-time volume gain
         function adjustSynthVolume(val) {
             synthVolumeLevel = val / 100;
             document.getElementById('synth-vol-label').innerText = `${val}%`;
@@ -1704,6 +1750,7 @@
             }
         }
 
+        // Dynamic Study Analytics display list
         function renderAnalyticsView() {
             const list = document.getElementById('analytics-mastery-list');
             if (!list) return;
@@ -1727,6 +1774,7 @@
             });
         }
 
+        // Chart.js renderer configurations
         function initCharts() {
             const isDark = document.documentElement.classList.contains('dark');
             const gridColor = isDark ? '#1f2937' : '#ede9fe';
@@ -1833,6 +1881,7 @@
             }
         }
 
+        // Modal displays toggler
         function openAddSubjectModal() {
             document.getElementById('add-subject-modal').classList.remove('hidden');
             selectModalColor('#6366f1', 'indigo'); 
@@ -1853,6 +1902,7 @@
             document.getElementById(`color-check-${name}`).classList.remove('hidden');
         }
 
+        // Store new subject parameters
         function submitNewSubject() {
             const name = document.getElementById('add-subject-name').value.trim();
             const hours = parseFloat(document.getElementById('add-subject-hours').value) || 60;
@@ -1888,6 +1938,7 @@
             triggerPersistentSave();
         }
 
+        // Save display name parameters
         function saveWorkspaceSettings() {
             const nameVal = document.getElementById('settings-name-input').value.trim();
             if (nameVal) {
